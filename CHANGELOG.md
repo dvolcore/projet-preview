@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.5 — 2026-09-04
+
+- Redesign pricing with aligned smoked-glass panels and steel gradients, reducing the full red background to localized accents.
+- Replace price counting and card tilt with a pausable light sweep, cursor sheen and a one-time pipe reveal. Preserve prices and service details.
+
+
 ## 0.0.0.4 — 2026-09-04
 
 - Fix pipe-scene overlap while scrolling by removing the smooth-scroll/refresh conflict, refreshing after upstream layout changes, and containing the scene within its own opaque section.

@@ -17,7 +17,8 @@ Open http://127.0.0.1:8873/projet-preview/. Asset paths intentionally include `/
 - `index.html` and `css/site.css`: cinematic homepage, branded pricing and scroll-driven pipe demonstration.
 - `css/site.css`: shared styling and navigation. Header HTML is repeated across the static pages; update it consistently.
 - `js/site.js`: navigation, process diagram, motion preferences and quote handling.
-- `js/silk-band.js`, `js/price-band.js` and `js/surprises.js`: branded pricing and mascot motion.
+- `css/luxe-pricing.css` and `js/luxe-pricing.js`: glass pricing panels, cursor sheen and a pausable light sweep. Legacy preview pages retain the earlier silk/count-up treatment.
+- `js/surprises.js`: mascot motion.
 - `request-quote/index.html`, `css/quote.css` and `js/quote-preview.js`: quote layout and validation.
 
 Existing price ranges, testimonials and business contact details are preserved. Do not add claims or customer evidence without a verified source.
@@ -44,3 +45,5 @@ For layout changes, check 320, 390, 768, 1024 and 1440 pixel widths; mobile menu
 GitHub Pages deploys the root of `main`. Review changes on a branch, run the checks, then merge. Cache versions on changed CSS/JS links ensure returning visitors receive the updated presentation. Roll back by reverting the relevant commit through Git and deploying `main` again.
 
 Scroll regression: `tests/scroll-containment.cjs` uses an existing Playwright runtime via `PLAYWRIGHT_MODULE` and browser binary via `CHROMIUM_PATH`. It checks refresh at a scrolled position, late layout growth, forward/reverse scrolling and viewport transitions. Set `SITE_URL` to test a deployment. Global CSS smooth scrolling must remain disabled because it makes ScrollTrigger refresh measurements asynchronous.
+
+Pricing motion regression: `tests/pricing-motion.cjs` uses the same existing Playwright runtime configuration as the scroll regression. It verifies aligned cards, stable price figures, pause/resume, reduced motion, offscreen pause and JavaScript-disabled content.

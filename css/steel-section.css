@@ -1,0 +1,59 @@
+/* Localized steel-and-glass treatment for the homepage symptom section. */
+.section--steel {
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 78% 40%, rgba(179,195,208,.19), transparent 67%),
+    linear-gradient(110deg, #10161D 7%, #202B35 43%, #46535F 79%, #394550);
+  --ink-soft: #C5CED7;
+}
+.section--steel::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, #0B0F14, transparent 16%, transparent 85%, #0B0F14);
+}
+.section--steel .steel-accent { color: #FF7969; }
+.section--steel .label { color: #8DBEF6; }
+.section--steel .emergency-line { border-left-color: #FF7969; }
+.section--steel .symptom-grid a {
+  position: relative; isolation: isolate; overflow: hidden;
+  background:
+    linear-gradient(140deg, rgba(255,255,255,.16), rgba(255,255,255,.025) 43%, rgba(197,217,236,.09)),
+    rgba(30,40,52,.55);
+  border: 1px solid rgba(220,231,242,.23);
+  border-top-color: rgba(243,248,255,.50);
+  border-bottom-color: rgba(166,184,205,.16);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), inset 0 -1px 0 rgba(7,14,23,.35), 0 12px 26px -16px rgba(0,0,0,.65);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(18px) saturate(125%);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+.section--steel .symptom-grid a::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse at 0 0, rgba(255,255,255,.10), transparent 57%);
+}
+.section--steel .symptom-grid span { color: #CBD4DD; }
+.section--steel .symptom-grid em { color: #9CCBFF; }
+.section--steel .symptom-grid em::after { color: #FF8A7C; }
+.section--steel .symptom-grid a:focus-visible { outline: 2px solid #FFC2BA; outline-offset: 4px; }
+.section--steel .stakes__media {
+  border: 1px solid rgba(223,233,243,.36);
+  border-top-color: rgba(255,255,255,.65);
+  box-shadow: 0 28px 58px -24px rgba(0,0,0,.55), 0 0 32px -16px rgba(180,209,236,.36);
+}
+.section--steel .stakes__media img { filter: brightness(1.32) contrast(.94) saturate(.94); }
+.section--steel .stakes__media figcaption {
+  color: #F4F6F8; padding: 5px 10px; border-radius: 4px;
+  background: rgba(17,25,35,.72);
+}
+@media (hover: hover) and (pointer: fine) {
+  .section--steel .symptom-grid a:hover {
+    border-color: rgba(255,154,142,.7);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 12px 28px -16px rgba(0,0,0,.65), 0 0 22px -12px rgba(255,105,87,.30);
+  }
+}
+@media (max-width: 900px) {
+  .section--steel { background: radial-gradient(ellipse at 92% 43%, rgba(186,202,216,.14), transparent 65%), linear-gradient(105deg, #151D26, #34424F 76%, #46535F); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section--steel .symptom-grid a { transition: none; }
+  .section--steel .symptom-grid a:hover { transform: none; }
+}

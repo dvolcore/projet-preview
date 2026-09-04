@@ -14,10 +14,10 @@ Open http://127.0.0.1:8873/projet-preview/. Asset paths intentionally include `/
 
 ## Editing
 
-- `index.html` and `css/home.css`: homepage composition, job proof, pricing and services.
+- `index.html` and `css/site.css`: cinematic homepage, branded pricing and scroll-driven pipe demonstration.
 - `css/site.css`: shared styling and navigation. Header HTML is repeated across the static pages; update it consistently.
 - `js/site.js`: navigation, process diagram, motion preferences and quote handling.
-- `js/home.js`: the film dialog. The film is downloaded only when opened.
+- `js/silk-band.js`, `js/price-band.js` and `js/surprises.js`: branded pricing and mascot motion.
 - `request-quote/index.html`, `css/quote.css` and `js/quote-preview.js`: quote layout and validation.
 
 Existing price ranges, testimonials and business contact details are preserved. Do not add claims or customer evidence without a verified source.
@@ -37,7 +37,7 @@ node --check js/quote-preview.js
 node --test tests/quote.test.cjs
 ```
 
-For layout changes, check 320, 390, 768, 1024 and 1440 pixel widths; mobile menu focus and Escape; film opening, closing and focus return; all three process controls; reduced motion and JavaScript-disabled content. Test quote delivery only with a mocked request or controlled inbox, never by contacting the business unintentionally.
+For layout changes, check 320, 390, 768, 1024 and 1440 pixel widths; mobile menu focus and Escape; hero-film playback and the scroll-driven pipe sequence; reduced motion and JavaScript-disabled content. Test quote delivery only with a mocked request or controlled inbox, never by contacting the business unintentionally.
 
 ## Publishing and rollback
 

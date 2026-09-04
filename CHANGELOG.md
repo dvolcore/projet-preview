@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.2 — 2026-09-04
+
+- Restore the cinematic homepage, branded blue/red pricing, mascot moments and original scroll-driven pipe demonstration after owner feedback.
+- Keep the mist and scrim removed, and retain functional quote-form improvements.
+
+
 ## 0.0.0.1 — 2026-09-04
 
 - Give the homepage a stable truck hero with the existing brand film available on request.

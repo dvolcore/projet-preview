@@ -1,0 +1,41 @@
+/* Service area: dark reading edge, illuminated skyline and steel surround. */
+.area-illuminated {
+  position: relative; isolation: isolate;
+  background: radial-gradient(ellipse at 90% 50%,rgba(199,215,230,.22),transparent 65%),linear-gradient(105deg,#111B25 8%,#2B3B4A 46%,#637482 100%);
+  padding-block: clamp(3rem,6vw,5rem);
+}
+.area-illuminated::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:linear-gradient(180deg,#0B0F14,transparent 22%,transparent 78%,#0B0F14); }
+.area-illuminated .area { min-height:34rem; border:1px solid rgba(229,239,248,.35); border-top-color:rgba(246,250,255,.58); border-radius:22px; box-shadow:0 28px 60px -28px rgba(0,0,0,.65),0 0 40px -24px rgba(216,234,251,.35); }
+.area-illuminated .area__bg img { filter:brightness(1.19) contrast(.98) saturate(1.03); object-position:54% 40%; }
+.area-illuminated .area__bg::after { background:linear-gradient(90deg,rgba(6,15,26,.91) 0%,rgba(8,18,29,.76) 29%,rgba(9,19,30,.3) 56%,rgba(9,19,30,.06) 100%),linear-gradient(0deg,rgba(8,18,29,.69),transparent 43%); }
+.area-illuminated .area__content { gap:36px; padding:clamp(28px,3.5vw,50px); grid-template-columns:1.05fr 1fr; }
+.area-illuminated .label { color:#A7D0FA; }
+.area-illuminated h2 { font-size:clamp(2.5rem,4.1vw,3.9rem); line-height:1.04; color:#F3F6FB; }
+.area-illuminated .lede { color:#D3DFEB; font-size:clamp(1rem,1.4vw,1.25rem); line-height:1.65; }
+.area-illuminated .area__cities {
+  padding:22px 24px; gap:6px 22px; border:1px solid rgba(237,245,255,.35); border-top-color:rgba(249,253,255,.65); border-radius:14px;
+  background:linear-gradient(140deg,rgba(240,248,255,.15),transparent 62%),rgba(16,30,44,.73);
+  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 18px 34px -24px rgba(0,0,0,.6);
+  font-size:clamp(1.1rem,1.55vw,1.5rem); color:#F3F7FC; line-height:1.2;
+}
+.area-illuminated .area__cities li { padding-block:12px; border-bottom-color:rgba(222,238,254,.22); }
+.area-illuminated .area__cities li:first-child { color:#B4D9FF; }
+@media(max-width:900px) {
+ .area-illuminated .area__content { grid-template-columns:1fr; gap:26px; }
+ .area-illuminated .area__bg { position:relative; inset:auto; height:clamp(210px,40vw,330px); z-index:auto; }
+ .area-illuminated .area__bg img { object-position:65% 33%; }
+ .area-illuminated .area__bg::after { background:linear-gradient(0deg,#182838 0%,rgba(17,29,42,.05) 42%); }
+ .area-illuminated .area { display:block; min-height:0; background:linear-gradient(110deg,#152332,#354B5E); }
+ .area-illuminated .area__content { padding:26px; }
+ .area-illuminated h2 { font-size:clamp(2.2rem,6.8vw,3.2rem); }
+ .area-illuminated .area__cities { padding:16px; gap:6px 16px; }
+}
+@media(max-width:380px) { .area-illuminated .area__content { padding:20px; } .area-illuminated .area__cities { font-size:1.05rem; } }
+
+/* Keep the skyline unobscured: coverage sits below the image, not over it. */
+.area-illuminated .area { display:block; min-height:0; background:#203143; }
+.area-illuminated .area__hero { position:relative; isolation:isolate; min-height:30rem; display:grid; align-items:end; }
+.area-illuminated .area__cities { margin:0; border:0; border-top:1px solid rgba(232,243,255,.3); border-radius:0; padding:18px clamp(28px,3.5vw,50px) 24px; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px 28px; background:linear-gradient(110deg,rgba(14,26,39,.65),rgba(112,139,163,.25)); box-shadow:inset 0 1px 0 rgba(255,255,255,.08); }
+@media(max-width:900px) { .area-illuminated .area__hero { display:block; min-height:0; } .area-illuminated .area__cities { grid-template-columns:repeat(2,minmax(0,1fr)); padding:16px 26px 24px; gap:4px 18px; } }
+@media(max-width:380px) { .area-illuminated .area__cities { padding-inline:20px; } }

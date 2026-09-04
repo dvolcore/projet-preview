@@ -49,3 +49,5 @@ Scroll regression: `tests/scroll-containment.cjs` uses an existing Playwright ru
 Pricing motion regression: `tests/pricing-motion.cjs` uses the same existing Playwright runtime configuration as the scroll regression. It verifies aligned cards, stable price figures, pause/resume, reduced motion, offscreen pause and JavaScript-disabled content.
 
 Customer stories use `css/customer-stories.css` and `js/customer-stories.js`. The homepage presents a featured review plus two supporting reviews, with manual controls through all five. Full quotes and attributions are preserved; no-JavaScript visitors see all reviews. `tests/customer-stories.cjs` verifies access, exact excerpts, keyboard focus, motion preferences and responsive behavior using the same Playwright configuration.
+
+The homepage service gallery is scoped by `services-gallery` and styled in `css/services-gallery.css`. Image areas are separate from text panels; the original descriptions and destinations remain. The illustrations use responsive sources, including the existing brighter kitchen asset.

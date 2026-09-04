@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.7 — 2026-09-04
+
+- Recompose services as a wide hydro-jetting feature above camera and drain-clearing cards, with unobscured images and separate glass content panels.
+- Add brighter steel lighting, responsive image sources and the existing brighter kitchen illustration; preserve service descriptions and links.
+
+
 ## 0.0.0.6 — 2026-09-04
 
 - Recompose testimonials as one featured customer story beside supporting reviews, with exact pull quotes and polished steel/glass surfaces.

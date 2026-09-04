@@ -260,15 +260,8 @@ h4 { font-size: var(--t-md); line-height: 1.1; }
 .hero__layer { position: absolute; inset: -6% -4%; will-change: transform; pointer-events: none; }
 .hero__bg { z-index: 0; }
 .hero__bg img, .hero__bg video { width: 100%; height: 100%; object-fit: cover; object-position: 60% 60%; }
-.hero__mist { z-index: 3; mix-blend-mode: screen; opacity: 0.55; inset: -6% -4% -6% 30%; }
-.hero__mist img { width: 100%; height: 100%; object-fit: cover; object-position: 100% 50%; }
 .hero__truck { z-index: 2; inset: auto -3% 9% auto; width: min(58vw, 1040px); }
 .hero__truck img { width: 100%; height: auto; filter: drop-shadow(0 40px 60px rgba(0,0,0,0.65)); }
-.hero__scrim { position: absolute; inset: 0; z-index: 4; pointer-events: none;
-  background:
-    linear-gradient(to top, rgba(11,15,20,0.98) 0%, rgba(11,15,20,0.75) 26%, rgba(11,15,20,0.15) 55%, transparent 75%),
-    linear-gradient(to right, rgba(11,15,20,0.8) 0%, rgba(11,15,20,0.35) 34%, transparent 58%);
-}
 .hero__mascot {
   position: absolute; z-index: 6; right: clamp(-2.5rem, -2vw, -1rem); bottom: -1.5rem;
   width: clamp(20rem, 31vw, 32rem); height: auto; pointer-events: none;
@@ -287,7 +280,6 @@ h4 { font-size: var(--t-md); line-height: 1.1; }
 @media (max-width: 960px) {
   .hero { align-items: start; }
   .hero__truck { width: 124vw; inset: auto -26% 2% auto; }
-  .hero__mist { inset: -6% -4%; opacity: 0.4; }
   .hero > .hero__mascot { display: none; }
   .hero__mascot-mobile {
     display: block; width: clamp(10.5rem, 46vw, 13rem); height: auto;
@@ -296,7 +288,6 @@ h4 { font-size: var(--t-md); line-height: 1.1; }
   }
   .hero__content { max-width: none; padding-top: var(--s-6); padding-bottom: 48vw; }
   .hero__content h1 { font-size: clamp(3rem, 14vw, 5rem); }
-  .hero__scrim { background: linear-gradient(to top, rgba(11,15,20,1) 0%, rgba(11,15,20,0.15) 22%, rgba(11,15,20,0.55) 45%, rgba(11,15,20,0.8) 70%, rgba(11,15,20,0.6) 100%); }
 }
 
 /* --------------------------------------------------------------------------
@@ -578,7 +569,7 @@ h4 { font-size: var(--t-md); line-height: 1.1; }
   .hero__layer { transform: none !important; }
 }
 @media print {
-  .site-header, .callbar, .grain, .hero__mist, video { display: none !important; }
+  .site-header, .callbar, .grain, video { display: none !important; }
   body { background: #fff; color: #000; }
 }
 
@@ -621,10 +612,6 @@ iframe[src*="google.com/maps"] { display: block; width: 100%; aspect-ratio: 4 / 
   .site-header { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(11,15,20,0.97); }
   .nav { z-index: 86; }
 }
-.hero__mist { opacity: 0.28; inset: -6% -4% -6% 44%; }
-.hero__scrim { background:
-  linear-gradient(to top, rgba(11,15,20,0.98) 0%, rgba(11,15,20,0.75) 26%, rgba(11,15,20,0.12) 55%, transparent 75%),
-  linear-gradient(to right, rgba(11,15,20,0.8) 0%, rgba(11,15,20,0.3) 28%, transparent 42%); }
 .section--light .btn--secondary { --btn-line: rgba(11,15,20,0.32); }
 .section--light .btn--secondary:hover { border-color: rgba(11,15,20,0.6); }
 
@@ -1244,3 +1231,36 @@ iframe[src*="google.com/maps"] { display: block; width: 100%; aspect-ratio: 4 / 
   .ambush__blast { right: 28%; bottom: 32%; } .ambush__puddle { right: 40%; width: 11rem; }
 }
 .reduced-motion .flyby, .reduced-motion .ambush { display: none !important; }
+
+
+/* --------------------------------------------------------------------------
+   Hero: no overlay. 2026-09-04, owner directive.
+   The mist layer and the full-bleed scrim are both gone. The mist was a
+   screen-blended image inset from the left, so its hard edge painted a
+   vertical line down the middle of the hero and a milky cast on one side.
+   In their place: one elliptical pool of shade that hugs the copy and
+   falls to zero on every side, so nothing draws a straight edge. Tuned
+   against the brightest frame of the trailer, which is a sunlit living room.
+   -------------------------------------------------------------------------- */
+.hero__content { position: relative; }
+.hero-pool {
+  position: absolute; z-index: -1; pointer-events: none;
+  left: -16%; right: -46%; top: -22%; bottom: -22%;
+  background:
+    radial-gradient(52% 40% at 27% 72%, rgba(3,6,11,.95) 0%, rgba(3,6,11,.86) 44%, rgba(3,6,11,.45) 70%, rgba(3,6,11,0) 88%),
+    radial-gradient(58% 52% at 27% 48%, rgba(3,6,11,.96) 0%, rgba(3,6,11,.88) 42%, rgba(3,6,11,.5) 68%, rgba(3,6,11,0) 88%);
+}
+.hero__content h1 { text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+.hero__content .lede { color: #EAF0F7; }
+.hero__content .lede,
+.hero .proof-line blockquote,
+.hero .proof-line figcaption,
+.hero__meta { text-shadow: 0 1px 3px rgba(0,0,0,.95), 0 2px 14px rgba(0,0,0,.85); }
+@media (max-width: 960px) {
+  .hero-pool { left: -10%; right: -10%; top: -8%; bottom: -8%;
+    background:
+      radial-gradient(70% 34% at 44% 74%, rgba(3,6,11,.94) 0%, rgba(3,6,11,.78) 46%, rgba(3,6,11,.32) 70%, rgba(3,6,11,0) 88%),
+      radial-gradient(82% 48% at 44% 40%, rgba(3,6,11,.95) 0%, rgba(3,6,11,.84) 44%, rgba(3,6,11,.44) 68%, rgba(3,6,11,0) 88%);
+  }
+}
+@media (prefers-reduced-motion: reduce) { .hero-pool { display: block; } }

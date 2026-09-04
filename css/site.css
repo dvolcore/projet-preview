@@ -1264,3 +1264,19 @@ iframe[src*="google.com/maps"] { display: block; width: 100%; aspect-ratio: 4 / 
   }
 }
 @media (prefers-reduced-motion: reduce) { .hero-pool { display: block; } }
+
+/* Shared navigation refinement: keep the mark legible as space narrows. */
+.site-header .brand { flex-shrink: 0; }
+.site-header .brand__mark--lockup { width: 170px; height: auto; }
+.nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.nav .btn { color: #FFFFFF; }
+@media (min-width: 961px) and (max-width: 1100px) {
+  .site-header .container { gap: 12px; }
+  .site-header .brand__mark--lockup { width: 145px; }
+  .nav a { padding-inline: 8px; }
+  .header-phone { padding-inline: 0; font-size: .8125rem; }
+}
+@media (max-width: 960px) {
+  .site-header .brand__mark--lockup { width: 145px; }
+  .nav a { display: flex; }
+}

@@ -1,0 +1,10 @@
+# Changelog
+
+## 0.0.0.1 — 2026-09-04
+
+- Give the homepage a stable truck hero with the existing brand film available on request.
+- Move real job footage and published pricing near the top; simplify service explanations and navigation.
+- Replace the red, animated pricing treatment with a clear aligned comparison.
+- Replace the long pinned pipe demonstration with three selectable steps.
+- Bring quote fields into the first screen, correct required/optional validation, and prepare email requests on static preview hosting.
+- Preserve existing business details, media, prices and customer quotes. Add no new dependencies.

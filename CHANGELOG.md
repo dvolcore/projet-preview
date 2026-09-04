@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.0.3 — 2026-09-04
+
+- Lighten the homepage symptom section with a steel-gray gradient, brighter image, red accents and polished glass cards. Preserve its layout, copy and links.
+
+
 ## 0.0.0.2 — 2026-09-04
 
 - Restore the cinematic homepage, branded blue/red pricing, mascot moments and original scroll-driven pipe demonstration after owner feedback.

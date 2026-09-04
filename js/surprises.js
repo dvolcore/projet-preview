@@ -3,7 +3,7 @@
    2. At the closing CTA band the Clog Monster walks in, JET blasts it, it melts,
       JET flies off. Clicking the faded JET on the band replays it.
    Nothing runs under prefers-reduced-motion. Assets: /media/brand/jet-sprint.webp,
-   /projet-preview/brand/monster-{idle,scream,melt}.webp. */
+   /projet-preview/media/brand/monster-{idle,scream,melt}.webp. */
 (() => {
   "use strict";
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

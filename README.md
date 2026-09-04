@@ -42,3 +42,5 @@ For layout changes, check 320, 390, 768, 1024 and 1440 pixel widths; mobile menu
 ## Publishing and rollback
 
 GitHub Pages deploys the root of `main`. Review changes on a branch, run the checks, then merge. Cache versions on changed CSS/JS links ensure returning visitors receive the updated presentation. Roll back by reverting the relevant commit through Git and deploying `main` again.
+
+Scroll regression: `tests/scroll-containment.cjs` uses an existing Playwright runtime via `PLAYWRIGHT_MODULE` and browser binary via `CHROMIUM_PATH`. It checks refresh at a scrolled position, late layout growth, forward/reverse scrolling and viewport transitions. Set `SITE_URL` to test a deployment. Global CSS smooth scrolling must remain disabled because it makes ScrollTrigger refresh measurements asynchronous.

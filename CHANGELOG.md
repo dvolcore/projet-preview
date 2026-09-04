@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.0.4 — 2026-09-04
+
+- Fix pipe-scene overlap while scrolling by removing the smooth-scroll/refresh conflict, refreshing after upstream layout changes, and containing the scene within its own opaque section.
+
+
 ## 0.0.0.3 — 2026-09-04
 
 - Lighten the homepage symptom section with a steel-gray gradient, brighter image, red accents and polished glass cards. Preserve its layout, copy and links.

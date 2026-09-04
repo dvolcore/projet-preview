@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.8 — 2026-09-04
+
+- Illuminate the service-area skyline and right-hand steel surround while preserving a dark left reading area.
+- Move coverage below the city view and consistently use the existing branded image on mobile and desktop.
+
+
 ## 0.0.0.7 — 2026-09-04
 
 - Recompose services as a wide hydro-jetting feature above camera and drain-clearing cards, with unobscured images and separate glass content panels.

@@ -173,7 +173,20 @@
     const pipeSvg = act.querySelector(".pipe svg");
     const fitPipe = () => { if (pipeSvg) pipeSvg.setAttribute("preserveAspectRatio", window.innerWidth < 760 ? "none" : "xMidYMid meet"); };
     fitPipe(); window.addEventListener("resize", fitPipe, { passive: true });
-    if (hasGsap && !reduced) {
+    if (act.classList.contains("line-act--compact")) {
+      const controls = act.querySelectorAll("[data-pipe-step]");
+      const positions = [0.075, 0.5, 1];
+      const selectStep = (index) => {
+        render(positions[index]);
+        controls.forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)));
+      };
+      controls.forEach((button, index) => {
+        button.hidden = false;
+        button.previousElementSibling.hidden = true;
+        button.addEventListener("click", () => selectStep(index));
+      });
+      selectStep(0);
+    } else if (hasGsap && !reduced) {
       render(0);
       window.ScrollTrigger.create({
         trigger: act, start: "top top", end: "+=180%", pin: stage, pinSpacing: true, scrub: 0.6,
@@ -194,6 +207,8 @@
     document.querySelectorAll("video").forEach((v) => {
       v.removeAttribute("autoplay");
       v.autoplay = false;
+      // Dialog media can only start after the visitor explicitly opens the film.
+      if (v.closest(".film-dialog")) { v.controls = true; v.pause(); return; }
       const decorative = !!v.closest('[aria-hidden="true"]');
       let armed = true;
       const halt = () => { if (armed && !v.paused) v.pause(); };
@@ -222,31 +237,118 @@
   /* ---------- Quote form ---------- */
   const form = document.querySelector("form[data-quote]");
   if (form) {
+    const quoteTools = window.ProJetQuote || {};
+    const isPreview = typeof quoteTools.isPreviewEnv === "function" && quoteTools.isPreviewEnv(window.location);
+    const button = form.querySelector("button[type=submit]");
     const status = form.querySelector(".form__status");
-    const setInvalid = (name, bad) => { const f = form.querySelector(`[data-field="${name}"]`); if (f) f.classList.toggle("is-invalid", bad); return !bad; };
+    const previewNote = form.parentElement?.querySelector("[data-quote-preview-note]");
+    const routeNote = form.querySelector("[data-quote-route]");
+    const liveLabel = button?.getAttribute("data-live-label") || "Send Request";
+    const previewLabel = button?.getAttribute("data-preview-label") || "Create email request";
+    const setInvalid = (name, bad) => {
+      const field = form.querySelector(`[data-field="${name}"]`);
+      if (!field) return !bad;
+      field.classList.toggle("is-invalid", bad);
+      field.querySelectorAll("input, select, textarea").forEach((el) => {
+        el.setAttribute("aria-invalid", bad ? "true" : "false");
+      });
+      return !bad;
+    };
+    const setStatus = (type, htmlText) => {
+      status.className = `form__status ${type}`;
+      status.innerHTML = htmlText;
+    };
+    const readFields = () => {
+      const d = new FormData(form);
+      return {
+        name: d.get("name"),
+        email: d.get("email"),
+        phone: d.get("phone"),
+        zip: d.get("zip"),
+        service: d.get("service"),
+        urgency: d.get("urgency"),
+        contact_pref: d.get("contact_pref"),
+        message: d.get("message")
+      };
+    };
+    const validate = (fields) => {
+      if (typeof quoteTools.validateQuote === "function") return quoteTools.validateQuote(fields);
+      const phone = String(fields.phone || "").replace(/\D/g, "");
+      const invalid = {
+        phone: phone.length !== 10,
+        name: String(fields.name || "").trim().length < 2,
+        email: String(fields.email || "").trim().length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(fields.email || "").trim()),
+        zip: String(fields.zip || "").trim().length > 0 && !/^\d{5}$/.test(String(fields.zip || "").trim()),
+        message: String(fields.message || "").trim().length < 10
+      };
+      return { ok: !Object.values(invalid).some(Boolean), invalid };
+    };
+    const focusFirstInvalid = () => form.querySelector(".is-invalid input, .is-invalid textarea, .is-invalid select")?.focus();
+    if (button) button.textContent = isPreview ? previewLabel : liveLabel;
+    if (previewNote) {
+      previewNote.hidden = !isPreview;
+      previewNote.classList.toggle("is-shown", isPreview);
+      previewNote.textContent = isPreview ? "This request opens in your email app. Review it and send it there." : "";
+    }
+    if (routeNote) {
+      routeNote.hidden = !isPreview;
+      routeNote.classList.toggle("is-shown", isPreview);
+      routeNote.innerHTML = isPreview
+        ? "This request opens in your email app. Review it and send it there. If nothing opens, call or text <a href=\"tel:+18165066243\">(816) 506-6243</a>."
+        : "";
+    }
+    form.addEventListener("input", (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) return;
+      const field = target.closest("[data-field]");
+      if (!field) return;
+      field.classList.remove("is-invalid");
+      target.setAttribute("aria-invalid", "false");
+    });
+    form.addEventListener("change", (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) return;
+      const field = target.closest("[data-field]");
+      if (!field) return;
+      field.classList.remove("is-invalid");
+      field.querySelectorAll("input, select, textarea").forEach((el) => el.setAttribute("aria-invalid", "false"));
+    });
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      const fields = readFields();
+      const result = validate(fields);
+      ["phone", "name", "email", "zip", "message"].forEach((name) => setInvalid(name, !!result.invalid?.[name]));
+      if (status) { status.className = "form__status"; status.innerHTML = ""; }
+      if (!result.ok) { focusFirstInvalid(); return; }
+      if (!button || !status) return;
+      if (isPreview) {
+        button.disabled = true;
+        button.textContent = "Opening Email App";
+        const mailto = typeof quoteTools.buildQuoteMailto === "function"
+          ? quoteTools.buildQuoteMailto(fields)
+          : "mailto:projetllckc@gmail.com?subject=Quote%20request";
+        setStatus("is-note", "<strong>Email draft ready.</strong> Your email app should open with this request filled in. Review it and press send there. If nothing opens, call or text <a href=\"tel:+18165066243\">(816) 506-6243</a>.");
+        status.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "nearest" });
+        window.location.href = mailto;
+        window.setTimeout(() => {
+          button.disabled = false;
+          button.textContent = previewLabel;
+        }, 600);
+        return;
+      }
       const d = new FormData(form);
-      let ok = true;
-      ok = setInvalid("name", String(d.get("name") || "").trim().length < 2) && ok;
-      ok = setInvalid("email", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(d.get("email") || ""))) && ok;
-      const phone = String(d.get("phone") || "").replace(/\D/g, "");
-      ok = setInvalid("phone", phone.length > 0 && phone.length !== 10) && ok;
-      ok = setInvalid("message", String(d.get("message") || "").trim().length < 10) && ok;
-      if (!ok) { form.querySelector(".is-invalid input, .is-invalid textarea, .is-invalid select")?.focus(); return; }
-      const btn = form.querySelector("button[type=submit]");
-      btn.disabled = true; btn.textContent = "Sending";
+      button.disabled = true;
+      button.textContent = "Sending";
       try {
         const res = await fetch(form.getAttribute("action"), { method: "POST", body: d, headers: { "Accept": "application/json" } });
         if (!res.ok) throw new Error("bad status");
         form.reset();
-        status.className = "form__status is-ok";
-        status.innerHTML = "<strong>Request sent.</strong> We will get back to you promptly with an estimate. For same-day service, text or call <a href=\"tel:+18165066243\">(816) 506-6243</a>.";
+        setStatus("is-ok", "<strong>Request sent.</strong> We will get back to you promptly with an estimate. For same-day service, text or call <a href=\"tel:+18165066243\">(816) 506-6243</a>.");
       } catch (err) {
-        status.className = "form__status is-err";
-        status.innerHTML = "<strong>The form could not send from this preview.</strong> Text or call <a href=\"tel:+18165066243\">(816) 506-6243</a> or email <a href=\"mailto:projetllckc@gmail.com?subject=Quote%20request\">projetllckc@gmail.com</a>.";
+        setStatus("is-err", "<strong>That did not send.</strong> Text or call <a href=\"tel:+18165066243\">(816) 506-6243</a> or email <a href=\"mailto:projetllckc@gmail.com?subject=Quote%20request\">projetllckc@gmail.com</a>.");
       } finally {
-        btn.disabled = false; btn.textContent = "Send Request";
+        button.disabled = false;
+        button.textContent = liveLabel;
         status.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "nearest" });
       }
     });

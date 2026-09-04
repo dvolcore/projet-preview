@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.6 — 2026-09-04
+
+- Recompose testimonials as one featured customer story beside supporting reviews, with exact pull quotes and polished steel/glass surfaces.
+- Add manual previous/next controls, preserve all five complete quotes and attributions, and retain an all-visible no-JavaScript fallback.
+
+
 ## 0.0.0.5 — 2026-09-04
 
 - Redesign pricing with aligned smoked-glass panels and steel gradients, reducing the full red background to localized accents.

@@ -65,7 +65,8 @@
    Reset + base
    -------------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+/* ScrollTrigger refreshes must set scroll positions synchronously. */
+html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
 main[id], section[id], article[id], h2[id], h3[id] { scroll-margin-top: calc(var(--header-h) + var(--s-4)); }
 main[tabindex="-1"]:focus { outline: none; }
 body {
@@ -322,8 +323,8 @@ h4 { font-size: var(--t-md); line-height: 1.1; }
 /* --------------------------------------------------------------------------
    Signature act: THE LINE (pinned pipe cross-section)
    -------------------------------------------------------------------------- */
-.line-act { position: relative; background: var(--canvas); }
-.line-act__stage { position: relative; min-height: 100svh; display: grid; align-content: center; gap: var(--s-6); padding-block: calc(var(--header-h) + var(--s-6)) var(--s-8); }
+.line-act { position: relative; background: var(--canvas); isolation: isolate; clip-path: inset(0); }
+.line-act__stage { position: relative; background: var(--canvas); min-height: 100svh; display: grid; align-content: center; gap: var(--s-6); padding-block: calc(var(--header-h) + var(--s-6)) var(--s-8); }
 .line-act__head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--s-6); }
 .line-act__head h2 { margin: 0; max-width: 14ch; }
 .gauge { text-align: right; }

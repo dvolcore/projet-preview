@@ -1,7 +1,7 @@
 /* Pro Jet site engine. Vanilla JS + GSAP ScrollTrigger.
    Everything degrades: no JS = static page, reduced motion = no pin/parallax,
-   no autoplaying video and no reveal animations. Native CSS smooth scrolling
-   handles anchors, so the skip link moves focus the way the browser intends. */
+   no autoplaying video and no reveal animations. Native anchor navigation
+   preserves skip-link focus without interfering with scroll measurements. */
 (function () {
   "use strict";
   const html = document.documentElement;
@@ -192,6 +192,31 @@
         trigger: act, start: "top top", end: "+=180%", pin: stage, pinSpacing: true, scrub: 0.6,
         onUpdate: (self) => render(self.progress)
       });
+      // A late reflow above the scene must not leave its fixed pin at an old offset.
+      if ("ResizeObserver" in window) {
+        const heights = new Map();
+        let refreshFrame = 0;
+        const observer = new ResizeObserver((entries) => {
+          let changed = false;
+          entries.forEach(({ target }) => {
+            const height = target.offsetHeight;
+            if (heights.get(target) !== height) {
+              heights.set(target, height);
+              changed = true;
+            }
+          });
+          if (changed && !refreshFrame) {
+            refreshFrame = requestAnimationFrame(() => {
+              refreshFrame = 0;
+              window.ScrollTrigger.refresh();
+            });
+          }
+        });
+        for (let section = act.previousElementSibling; section; section = section.previousElementSibling) {
+          heights.set(section, section.offsetHeight);
+          observer.observe(section, { box: "border-box" });
+        }
+      }
     } else {
       render(1);
       if (gauge) gauge.textContent = "4,000";

@@ -3,7 +3,7 @@
    2. At the closing CTA band the Clog Monster walks in, JET blasts it, it melts,
       JET flies off. Clicking the faded JET on the band replays it.
    Nothing runs under prefers-reduced-motion. Assets: /media/brand/jet-sprint.webp,
-   /media/brand/monster-{idle,scream,melt}.webp. */
+   /projet-preview/brand/monster-{idle,scream,melt}.webp. */
 (() => {
   "use strict";
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -21,7 +21,7 @@
       if (!once("pj-flyby")) return;
       const fly = document.createElement("div");
       fly.className = "flyby";
-      fly.appendChild(img("/media/brand/jet-sprint.webp", "flyby__jet"));
+      fly.appendChild(img("/projet-preview/media/brand/jet-sprint.webp", "flyby__jet"));
       const trail = document.createElement("span"); trail.className = "flyby__trail"; fly.appendChild(trail);
       document.body.appendChild(fly);
       fly.addEventListener("animationend", () => fly.remove(), { once: true });
@@ -35,8 +35,8 @@
   const stage = document.createElement("div");
   stage.className = "ambush";
   stage.setAttribute("aria-hidden", "true");
-  const monster = img("/media/brand/monster-idle.webp", "ambush__monster");
-  const jet = img("/media/brand/jet-sprint.webp", "ambush__jet");
+  const monster = img("/projet-preview/media/brand/monster-idle.webp", "ambush__monster");
+  const jet = img("/projet-preview/media/brand/jet-sprint.webp", "ambush__jet");
   const blast = document.createElement("span"); blast.className = "ambush__blast";
   const puddle = document.createElement("span"); puddle.className = "ambush__puddle";
   stage.append(puddle, monster, blast, jet);
@@ -46,16 +46,16 @@
   async function ambush() {
     if (running) return; running = true;
     stage.classList.add("is-on"); band.classList.add("is-ambush");
-    monster.src = "/media/brand/monster-idle.webp";
+    monster.src = "/projet-preview/media/brand/monster-idle.webp";
     stage.classList.remove("s-scream", "s-blast", "s-melt", "s-exit");
     stage.classList.add("s-walk");            // monster waddles in from the left
     await sleep(2300);
-    monster.src = "/media/brand/monster-scream.webp";
+    monster.src = "/projet-preview/media/brand/monster-scream.webp";
     stage.classList.add("s-scream");          // sees JET coming
     await sleep(700);
     stage.classList.add("s-blast");           // JET arrives, water on
     await sleep(900);
-    monster.src = "/media/brand/monster-melt.webp";
+    monster.src = "/projet-preview/media/brand/monster-melt.webp";
     stage.classList.add("s-melt");            // monster dissolves into the puddle
     await sleep(1300);
     stage.classList.add("s-exit");            // JET peels off the top of the screen

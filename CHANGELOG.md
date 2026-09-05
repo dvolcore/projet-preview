@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.0.9 — 2026-09-04
+
+- Add isolated SEO preview/candidate generation, URL/schema/link audits, and offline operational-evidence checks.
+- Add the current business-readiness checklist, CRM handoff, ownership questions, activation boundaries and runbooks.
+- Install default-off, privacy-limited intent analytics; email drafts are distinct from trusted lead conversions.
+- Prepare repository validation; activation awaits GitHub workflow permission. Remove abandoned homepage/preview code, unreferenced assets and stale AI-readable claims; preserve current designs and shared dependencies.
+
+
 ## 0.0.0.8 — 2026-09-04
 
 - Illuminate the service-area skyline and right-hand steel surround while preserving a dark left reading area.

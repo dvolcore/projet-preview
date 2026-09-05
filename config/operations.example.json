@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "environment": "local",
+  "gates": {
+    "facts": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "domain": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "seo": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "migration": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "crm": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "intake": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "response_owner": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "privacy": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "rollback": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "telephony": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "dispatch": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "estimates": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "payments": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "reports": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "continuity": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "analytics": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "ai": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "follow_up": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    },
+    "end_to_end": {
+      "status": "unknown",
+      "owner": "",
+      "environment": "local",
+      "outcome": "",
+      "timestamp": "",
+      "evidence_ref": ""
+    }
+  }
+}

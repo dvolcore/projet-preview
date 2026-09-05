@@ -1,53 +1,62 @@
-# Pro Jet website
+# Pro Jet — current website and operations foundation
 
-Static HTML, CSS and JavaScript for Pro Jet’s Kansas City website. The published review site is https://dvolcore.github.io/projet-preview/.
+Current reviewed website: https://dvolcore.github.io/projet-preview/.
+
+**Website-to-business automation remains unverified; this project has not activated provider integrations.** The website currently prepares email drafts on static preview hosting. CRM delivery, phone routing, dispatch, payment, analytics accounts and the final customer-facing domain require the owner's configuration and controlled evidence.
+
+Start with the single [current operational checklist](docs/operations/checklist.md), [owner decisions](docs/operations/owner-decisions.md), and [CRM-agent handoff](docs/operations/crm-handoff.md). They distinguish software implemented locally from connections that have not been verified.
+
+## Source of truth and cleanup
+
+`index.html`, service folders, `css/` and `js/` contain the current design. Retired `/preview-c/` and `/hero-lab/` URLs redirect to this version. Superseded homepage code, unreferenced assets and old design experiments have been removed; tracked history remains in Git for recovery. Do not revive old previews or copy an old price list into the active site.
+
+The owner must confirm the authoritative price book and final domain. Until then, do not change prices based on an old page, a fixture or a configuration example. `llms.txt` contains no stale numeric price and is not a ranking guarantee.
 
 ## Local preview
 
-From the directory containing this checkout (named `projet-preview`):
+From the parent directory containing the `projet-preview` checkout:
 
 ```sh
 python3 -m http.server 8873 --bind 127.0.0.1
 ```
 
-Open http://127.0.0.1:8873/projet-preview/. Asset paths intentionally include `/projet-preview/` for GitHub Pages.
+Open http://127.0.0.1:8873/projet-preview/. Source asset paths intentionally target the existing preview deployment.
 
-## Editing
-
-- `index.html` and `css/site.css`: cinematic homepage, branded pricing and scroll-driven pipe demonstration.
-- `css/site.css`: shared styling and navigation. Header HTML is repeated across the static pages; update it consistently.
-- `js/site.js`: navigation, process diagram, motion preferences and quote handling.
-- `css/luxe-pricing.css` and `js/luxe-pricing.js`: glass pricing panels, cursor sheen and a pausable light sweep. Legacy preview pages retain the earlier silk/count-up treatment.
-- `js/surprises.js`: mascot motion.
-- `request-quote/index.html`, `css/quote.css` and `js/quote-preview.js`: quote layout and validation.
-
-Existing price ranges, testimonials and business contact details are preserved. Do not add claims or customer evidence without a verified source.
-
-## Quote requests
-
-GitHub Pages cannot execute the `/forms/quote.php` endpoint referenced by the original website. On `*.github.io`, localhost and file previews, a valid form prepares an email draft to the existing business address. The visitor must review and send it in their email app; the website does not claim delivery. Call and text links remain available. With JavaScript disabled, the page offers direct call, text and email links instead of an unavailable form.
-
-On a server-hosted domain, the original form endpoint is used. That server and delivery path are not contained in this repository and must be verified before deploying there. No third-party form service or credentials have been introduced.
-
-## Checks
+## SEO build and audits
 
 ```sh
-node --check js/site.js
-node --check js/home.js
-node --check js/quote-preview.js
-node --test tests/quote.test.cjs
+python3 scripts/build_seo.py --profile preview --config config/seo.example.json --output /tmp/projet-preview-audit
 ```
 
-For layout changes, check 320, 390, 768, 1024 and 1440 pixel widths; mobile menu focus and Escape; hero-film playback and the scroll-driven pipe sequence; reduced motion and JavaScript-disabled content. Test quote delivery only with a mocked request or controlled inbox, never by contacting the business unintentionally.
+Output must be a fresh directory outside the repository. `OUTPUT/site/` is the sole publishable folder; `OUTPUT/seo-audit.json` is a separate report. The explicit allowlist excludes private configs/receipts, `.git`, `.omx`, scripts, tests, docs and experiments. Symlinks are rejected. The source is not mutated.
 
-## Publishing and rollback
+Generated preview pages are crawlable but non-indexable. A `production-candidate` profile can be tested only with an approved HTTPS origin/base path and public-fact approval references in a private config. It generates no deployment and does not certify business readiness. Price validation rules must be configured from the approved price book. The existing GitHub Pages site is not automatically replaced by generated output.
 
-GitHub Pages deploys the root of `main`. Review changes on a branch, run the checks, then merge. Cache versions on changed CSS/JS links ensure returning visitors receive the updated presentation. Roll back by reverting the relevant commit through Git and deploying `main` again.
+Final release requires the readiness evidence, real domain/redirect configuration, actual intake test and independent human verification. Do not publish the repository's private setup material or an audit report as part of the final site.
 
-Scroll regression: `tests/scroll-containment.cjs` uses an existing Playwright runtime via `PLAYWRIGHT_MODULE` and browser binary via `CHROMIUM_PATH`. It checks refresh at a scrolled position, late layout growth, forward/reverse scrolling and viewport transitions. Set `SITE_URL` to test a deployment. Global CSS smooth scrolling must remain disabled because it makes ScrollTrigger refresh measurements asynchronous.
+## Operational evidence
 
-Pricing motion regression: `tests/pricing-motion.cjs` uses the same existing Playwright runtime configuration as the scroll regression. It verifies aligned cards, stable price figures, pause/resume, reduced motion, offscreen pause and JavaScript-disabled content.
+```sh
+python3 scripts/check_readiness.py --config config/operations.example.json --scope business --format json
+```
 
-Customer stories use `css/customer-stories.css` and `js/customer-stories.js`. The homepage presents a featured review plus two supporting reviews, with manual controls through all five. Full quotes and attributions are preserved; no-JavaScript visitors see all reviews. `tests/customer-stories.cjs` verifies access, exact excerpts, keyboard focus, motion preferences and responsive behavior using the same Playwright configuration.
+The example intentionally returns blocked. Real config and evidence files belong outside this public repository. Exit 0 means required evidence records are present and well-formed, not that an external system was independently verified. [Evidence boundaries and runbooks](docs/operations/README.md) explain activation and rollback.
 
-The homepage service gallery is scoped by `services-gallery` and styled in `css/services-gallery.css`. Image areas are separate from text panels; the original descriptions and destinations remain. The illustrations use responsive sources, including the existing brighter kitchen asset.
+## Analytics
+
+Local [intent instrumentation](docs/operations/analytics.md) is installed but disabled until explicit origin, measurement ID and consent configuration. It loads no provider or tracking storage. Clicks and email drafts are not CRM leads, confirmed bookings or paid jobs.
+
+## Verification
+
+```sh
+node --test tests/*.test.cjs
+python3 -m unittest discover -s scripts -p 'test_*.py' -v
+```
+
+Browser regressions use an existing Playwright installation via `PLAYWRIGHT_MODULE` and an optional installed Chromium path via `CHROMIUM_PATH`: `tests/scroll-containment.cjs`, `tests/pricing-motion.cjs`, `tests/customer-stories.cjs`. `SITE_URL` selects a controlled target. They do not submit real customer messages or payments. The reviewed workflow template is `docs/operations/ci-workflow.yml`. Installing it under `.github/workflows/` requires a GitHub connection with workflow permission; the current token lacks that permission. Automated checks are not active yet.
+
+Global CSS smooth scrolling stays disabled because it interferes with synchronous ScrollTrigger refresh. Run the scrolling regression before changing that behavior.
+
+## Deployment
+
+The current GitHub Pages source remains the root of `main`. Changes use reviewed branches and verified deployment. The filtered builder artifact is prepared for the final host, which requires owner confirmation. Roll back a code change by reverting its commit; never delete CRM/customer history as website cleanup.

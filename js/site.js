@@ -118,8 +118,6 @@
     }
     // Entrance
     window.gsap.from(hero.querySelectorAll(".hero__content > *"), { y: 26, opacity: 0, duration: 1.1, ease: "power3.out", stagger: 0.08, delay: 0.15 });
-    const truck = hero.querySelector(".hero__truck");
-    if (truck) window.gsap.from(truck, { xPercent: 8, opacity: 0, duration: 1.6, ease: "power3.out", delay: 0.1 });
   }
 
   /* ---------- Signature act: THE LINE ---------- */
@@ -173,20 +171,7 @@
     const pipeSvg = act.querySelector(".pipe svg");
     const fitPipe = () => { if (pipeSvg) pipeSvg.setAttribute("preserveAspectRatio", window.innerWidth < 760 ? "none" : "xMidYMid meet"); };
     fitPipe(); window.addEventListener("resize", fitPipe, { passive: true });
-    if (act.classList.contains("line-act--compact")) {
-      const controls = act.querySelectorAll("[data-pipe-step]");
-      const positions = [0.075, 0.5, 1];
-      const selectStep = (index) => {
-        render(positions[index]);
-        controls.forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)));
-      };
-      controls.forEach((button, index) => {
-        button.hidden = false;
-        button.previousElementSibling.hidden = true;
-        button.addEventListener("click", () => selectStep(index));
-      });
-      selectStep(0);
-    } else if (hasGsap && !reduced) {
+    if (hasGsap && !reduced) {
       render(0);
       window.ScrollTrigger.create({
         trigger: act, start: "top top", end: "+=180%", pin: stage, pinSpacing: true, scrub: 0.6,
@@ -354,6 +339,7 @@
           : "mailto:projetllckc@gmail.com?subject=Quote%20request";
         setStatus("is-note", "<strong>Email draft ready.</strong> Your email app should open with this request filled in. Review it and press send there. If nothing opens, call or text <a href=\"tel:+18165066243\">(816) 506-6243</a>.");
         status.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "nearest" });
+        form.dispatchEvent(new CustomEvent("projet:quote-email-draft-prepared", { bubbles: true }));
         window.location.href = mailto;
         window.setTimeout(() => {
           button.disabled = false;

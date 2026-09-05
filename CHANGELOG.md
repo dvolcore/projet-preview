@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.12 — 2026-09-05
+
+- Upgrade the branded film to an animated city arrival: flight, landing, drifting smoke, traffic and moving reflections.
+- Animate the original logo and end-card graphics separately for exact branding; retain blue water effects and red accents.
+- Use fresh media URLs and a wider frame while preserving pause controls and reduced-motion stills.
+
 ## 0.0.0.11 — 2026-09-05
 
 - Add an original12-second Pro Jet motion graphic built from existing approved artwork, with blue water trails and red light accents.

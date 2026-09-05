@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.0.15 — 2026-09-05
+
+- Add four distinct ambient background placements and a three-step customer service finder.
+- Preserve urgent phone access, no-transmission guide results, keyboard navigation and red decision accents.
+- Pause ambient scenes offscreen, when hidden, under reduced motion or via Motion off.
+- Document the motion-design benchmark and prioritized next improvements.
+
 ## 0.0.0.14 — 2026-09-05
 
 - Add an interactive Pro Jet-versus-clog sequence with three service paths, a contained water blast and monster dissolve.

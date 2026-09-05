@@ -69,10 +69,29 @@ Validator: `python3 -m unittest discover -s scripts -p test_check_readiness.py -
 
 ## Immediate critical path
 
-1. Receive owner answers and the existing CRM agent’s handoff.
+1. Existing CRM handoff received and local services/historical test records rechecked on 2026-09-04. Resolve remaining owner inputs: hosted backend, final domain/prices, responder and controlled acknowledgment destination.
 2. Reconcile approved domain/prices, then generate the final candidate.
 3. Wire one real provider-native intake path and prove a controlled lead, ownership, failure recovery and acknowledgment.
 4. Verify phone escalation and booking capacity; then add payments/reporting and follow-up in prerequisite order.
 5. Activate analytics and search accounts with approved configuration; benchmark real results before scaling advertising.
 
 - **R03 / GitHub validation automation:** grant workflow permission through an authorized GitHub connection, install docs/operations/ci-workflow.yml under .github/workflows/, then verify its first hosted run. Current status: BUILT/REVIEWED, NOT ACTIVE.
+
+
+## Integration work after the Desktop handoff — 2026-09-04
+
+- Website receipt validation built and browser-tested: HTTP success alone no longer establishes lead acceptance. URL-encoded fields include a request ID; ambiguous delivery preserves fields and prevents another in-page submission. Public preview remains on its existing email-draft path until a hosted connector is verified.
+- Private durable intake candidate built: persist before provider writes, atomic destination claims, payload conflict detection, uncertain-write reconciliation, explicit acknowledgment and backup/restore. Fixture tests are not live provider acceptance.
+- A private command-center implementation is being verified against actual local health and aggregate inquiry records. Public access, operator authentication and business workflow controls remain separate activation work.
+
+### AI and operational connection sequence
+
+1. Reliable intake and explicit owner acknowledgment: existing EspoCRM/Chatwoot, scoped credentials, inbox/assignment, visible failed work and recovery.
+2. Call reception: preserve the selected Merritt voice; complete approved company facts, signed event handling, verified transfer destination and no-answer fallback. A transfer-start event does not establish a bridged call. [Retell event documentation](https://docs.retellai.com/features/webhook-overview).
+3. Scheduling: actual crew/calendar availability, resource holds, conflicts, reschedule/cancellation and delivered confirmations. AI cannot infer capacity from a website.
+4. Estimates/payments: approved pricebook, explicit acceptance, invoice/payment provider and accounting reconciliation. Keep these authoritative states outside language-model guesses.
+5. Follow-up: consent-aware SMS/email, delivery receipts, opt-outs, missed-call recovery, maintenance and neutral review requests.
+6. Command center: connect source-backed inquiries, assignments, calls, jobs, payment status and failure queues. Display last checked time and unavailable states. Administrative actions need authenticated authorization and audit history.
+7. Reliability: backed-up inquiry ledger, restore drill, uptime/queue alerts, named incident owner and manual fallback.
+
+Use a dedicated scoped API user for CRM integration, rather than the current local administrator authentication. [EspoCRM API documentation](https://docs.espocrm.com/development/api/).

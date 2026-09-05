@@ -54,6 +54,9 @@
 <link rel="stylesheet" href="/projet-preview/css/service-area.css?v=20260904-1">
 <link rel="stylesheet" href="/projet-preview/css/brand-motion.css?v=20260905-hold">
 <script defer src="/projet-preview/js/brand-motion.js?v=20260905-hold"></script>
+<link rel="stylesheet" href="/projet-preview/css/clog-battle.css?v=20260905-1">
+<link rel="stylesheet" href="/projet-preview/css/cinema-controls.css?v=20260905-cinema">
+<script src="/projet-preview/js/cinema-controls.js?v=20260905-cinema" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -365,6 +368,23 @@
     </div>
   </section>
 
+  <section class="clog-battle" data-pj-cinema data-clog-battle data-asset-base="/projet-preview/media/brand/" data-site-base="/projet-preview/" aria-labelledby="clog-battle-title">
+    <div class="container">
+      <header class="clog-battle__head"><p class="label">The Pro Jet universe</p><h2 id="clog-battle-title">Meet the clog.<br><em>Choose the response.</em></h2></header>
+      <div data-pj-cinema-controls aria-label="Experience controls"></div>
+      <div class="clog-battle__tabs" role="group" aria-label="Choose a drain problem">
+        <button type="button" data-battle-choice="recurring" aria-pressed="true">Recurring clogs</button>
+        <button type="button" data-battle-choice="roots" aria-pressed="false">Roots &amp; scale</button>
+        <button type="button" data-battle-choice="slow" aria-pressed="false">Slow drains</button>
+      </div>
+      <div class="clog-battle__body">
+        <div class="clog-battle__stage" aria-hidden="true"><span class="clog-battle__scene-label">PRO JET / FIELD ILLUSTRATION</span><div class="clog-battle__horizon"></div><div class="clog-battle__ring"></div><img class="clog-battle__hero" src="/projet-preview/media/brand/jet-stance.webp" width="512" height="512" alt="" loading="lazy"><img class="clog-battle__monster" src="/projet-preview/media/brand/monster-idle.webp" width="512" height="512" alt="" loading="lazy"><div class="clog-battle__water"></div></div>
+        <div class="clog-battle__copy"><h3 data-battle-title>The clog that comes back.</h3><p data-battle-description>Grease and buildup can remain after a cable opens the line. Hydro jetting cleans the pipe wall when inspection confirms it is the right approach.</p><button class="clog-battle__watch" type="button" data-battle-watch>Watch Pro Jet in action</button><a class="clog-battle__service" data-battle-service href="/projet-preview/hydro-jetting/">Explore hydro jetting →</a><div class="clog-battle__status" data-battle-status role="status" aria-live="polite"></div></div>
+      </div>
+      <p class="clog-battle__note">Brand illustration, not a demonstration of every treatment. Inspection determines the actual method. Significant root intrusion or damaged pipe may require repair.</p>
+    </div>
+  </section>
+
   <!-- SERVICES -->
   <section class="section section--surface services-gallery" id="services" aria-labelledby="services-title">
     <div class="container">
@@ -574,8 +594,8 @@
 <script src="/projet-preview/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/projet-preview/js/site.js?v=20260904-receipts" defer></script>
 <script src="/projet-preview/js/luxe-pricing.js?v=20260904-1" defer></script>
-<script src="/projet-preview/js/surprises.js" defer></script>
 <script src="/projet-preview/js/customer-stories.js?v=20260904-1" defer></script>
 <script src="/projet-preview/js/analytics-events.js?v=20260904-readiness" defer></script>
+<script src="/projet-preview/js/clog-battle.js?v=20260905-1" defer></script>
 </body>
 </html>

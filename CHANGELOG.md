@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.14 — 2026-09-05
+
+- Add an interactive Pro Jet-versus-clog sequence with three service paths, a contained water blast and monster dissolve.
+- Add shared motion and opt-in sound controls; preserve the arrival film’s play-once hold.
+- Replace the old uncontrolled flyby with a user-triggered, accessible battle panel.
+
 ## 0.0.0.13 — 2026-09-05
 
 - Play the Pro Jet arrival once, settle for two seconds, and retain the finished frame instead of looping or fading to black.

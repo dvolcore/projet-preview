@@ -55,6 +55,8 @@
         video.pause(); label();
       };
       const preferenceChanged = () => { wanted = !preference.matches && !completed; sync(); };
+      const interfaceMotion = event => { if (event.detail && event.detail.enabled === false) { wanted = false; sync(); } };
+      window.addEventListener('projet:interface-motion', interfaceMotion);
       const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); }, {threshold:0.05});
       observer.observe(container);
       button.addEventListener('click', toggle);
@@ -67,6 +69,7 @@
         video.removeEventListener('ended', ended);
         document.removeEventListener('visibilitychange', sync);
         preference.removeEventListener('change', preferenceChanged);
+        window.removeEventListener('projet:interface-motion', interfaceMotion);
         mounted.delete(container);
       };
       mounted.set(container, cleanup); cleanups.push(cleanup); label();

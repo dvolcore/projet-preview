@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.11 — 2026-09-05
+
+- Add an original12-second Pro Jet motion graphic built from existing approved artwork, with blue water trails and red light accents.
+- Add a branded motion panel while preserving the existing homepage film.
+- Defer motion loading until visible; add pause controls, hidden-page suspension and reduced-motion stills.
+
 ## 0.0.0.10 — 2026-09-04
 
 - Require a matching durable JSON receipt before confirming a website inquiry; retain customer fields and stop repeat submission on uncertain delivery.

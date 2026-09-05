@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/projet-preview/css/site.css?v=20260904-scrollfix">
+<link rel="stylesheet" href="/projet-preview/css/site.css?v=20260904-readiness">
 <link rel="stylesheet" href="/projet-preview/css/quote.css?v=20260904-refined">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -64,9 +64,7 @@
         <p class="quote-contact-line">Need help now? <a href="tel:+18165066243">Call (816) 506-6243</a> or <a href="sms:+18165066243">text us</a>.</p>
       </div>
       <div class="quote-form-wrap" data-reveal>
-        <!-- Send failure path. Always in the markup, hidden by CSS, revealed with no
-             JavaScript by the #send-failed fragment on the failure redirect. See
-             docs/review/HANDOFF_from_html_a.md for the CSS rule and the redirect change. -->
+        <!-- Integration behavior is documented in docs/operations/crm-handoff.md. -->
         <div class="form-alert" id="send-failed" role="alert" hidden>
           <p><strong>That did not send.</strong> Nothing was lost on our end, but we did not get your request. Call or text <a href="tel:+18165066243">(816) 506-6243</a>, or email <a href="mailto:projetllckc@gmail.com?subject=Quote%20request">projetllckc@gmail.com</a>.</p>
         </div>
@@ -232,6 +230,7 @@
 <script src="/projet-preview/js/vendor/gsap.min.js" defer></script>
 <script src="/projet-preview/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/projet-preview/js/quote-preview.js?v=20260904-refined" defer></script>
-<script src="/projet-preview/js/site.js?v=20260904-scrollfix" defer></script>
+<script src="/projet-preview/js/site.js?v=20260904-readiness" defer></script>
+<script src="/projet-preview/js/analytics-events.js?v=20260904-readiness" defer></script>
 </body>
 </html>

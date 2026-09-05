@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/projet-preview/css/site.css?v=20260904-scrollfix">
+<link rel="stylesheet" href="/projet-preview/css/site.css?v=20260904-readiness">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"ContactPage","@id":"https://projet.midmissouri.us/contact/","mainEntity":{"@id":"https://projet.midmissouri.us/#business"}},
@@ -87,9 +87,7 @@
         </ul>
       </div>
       <div data-reveal data-reveal-delay="100">
-        <!-- The design review wants this iframe replaced with a static map image that links
-             out to Google Maps. site/media/ holds no map asset and this pass may not add one,
-             so the iframe stays. See docs/review/HANDOFF_from_html_a.md. -->
+        <!-- Integration behavior is documented in docs/operations/crm-handoff.md. -->
         <iframe src="https://www.google.com/maps?q=38.9985687,-94.1915248&amp;z=12&amp;output=embed" title="Map of Pro Jet service area near Grain Valley, MO" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <p><a href="https://www.google.com/maps/search/?api=1&amp;query=38.9985687,-94.1915248" rel="noopener">Open the service area in Google Maps</a></p>
       </div>
@@ -149,6 +147,7 @@
 
 <script src="/projet-preview/js/vendor/gsap.min.js" defer></script>
 <script src="/projet-preview/js/vendor/ScrollTrigger.min.js" defer></script>
-<script src="/projet-preview/js/site.js?v=20260904-scrollfix" defer></script>
+<script src="/projet-preview/js/site.js?v=20260904-readiness" defer></script>
+<script src="/projet-preview/js/analytics-events.js?v=20260904-readiness" defer></script>
 </body>
 </html>

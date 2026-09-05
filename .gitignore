@@ -1,0 +1,5 @@
+/.omx/
+/.private/
+/build/
+__pycache__/
+*.pyc

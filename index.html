@@ -22,10 +22,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/projet-preview/css/site.css?v=20260904-scrollfix">
+<link rel="stylesheet" href="/projet-preview/css/site.css?v=20260904-readiness">
 <link rel="stylesheet" href="/projet-preview/css/steel-section.css?v=20260904-1">
 <link rel="stylesheet" href="/projet-preview/css/luxe-pricing.css?v=20260904-1">
-<link rel="preload" as="image" href="/projet-preview/media/real/truck-cutout-1200.webp">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Plumber","@id":"https://projet.midmissouri.us/#business","name":"Pro Jet","legalName":"Pro-Jet LLC","url":"https://projet.midmissouri.us/","telephone":"+1-816-506-6243","email":"projetllckc@gmail.com","image":"https://projet.midmissouri.us/media/real/truck-1600.jpg","logo":"https://projet.midmissouri.us/media/icons/app-icon-512.png","priceRange":"$$","address":{"@type":"PostalAddress","addressLocality":"Grain Valley","addressRegion":"MO","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":38.9985687,"longitude":-94.1915248},"areaServed":[{"@type":"City","name":"Kansas City"},{"@type":"City","name":"Grain Valley"},{"@type":"City","name":"Blue Springs"},{"@type":"City","name":"Independence"},{"@type":"City","name":"Lee's Summit"}],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"}],"sameAs":["https://www.facebook.com/profile.php?id=61583067832920"],"founder":{"@type":"Person","name":"Matthew Duke","jobTitle":"Founder/Owner"},"employee":[{"@type":"Person","name":"Robert McDaniel","jobTitle":"Certified Master Plumber, Company Partner"}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Hydro Jetting","url":"https://projet.midmissouri.us/hydro-jetting/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Sewer Camera Inspection","url":"https://projet.midmissouri.us/camera-inspection/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Drain Clearing","url":"https://projet.midmissouri.us/drain-clearing/"}}]}},
@@ -41,17 +40,7 @@
 ]}
 ]}
 </script>
-<!-- GA4: uncomment and replace G-XXXXXXX with the real Measurement ID to enable analytics.
-     See docs/MEASUREMENT_SETUP.md for setup steps and the six custom events.
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXX');
-</script>
-<script src="/projet-preview/js/analytics-events.js" defer></script>
--->
+<!-- Analytics stays disabled until the measurement owner and consent configuration are approved. See docs/operations/analytics.md. -->
 <link rel="stylesheet" href="/projet-preview/css/customer-stories.css?v=20260904-1">
 <link rel="stylesheet" href="/projet-preview/css/services-gallery.css?v=20260904-1">
 <link rel="stylesheet" href="/projet-preview/css/service-area.css?v=20260904-1">
@@ -81,7 +70,7 @@
 
 <main id="main" tabindex="-1">
 
-  <!-- HERO: layered. Back plate (generated), truck (real), mist (generated, screen blend), copy. -->
+  <!-- HERO: brand film with a feathered shade beneath the copy. -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__layer hero__bg" data-depth="0.35" aria-hidden="true">
       <video autoplay muted loop playsinline poster="/projet-preview/media/video/hero-trailer-poster.webp" preload="metadata">
@@ -89,11 +78,7 @@
         <img src="/projet-preview/media/video/hero-trailer-poster.webp" alt="">
       </video>
     </div>
-    <div class="hero__layer hero__truck" data-depth="0.7" aria-hidden="true">
-      <img src="/projet-preview/media/real/truck-cutout-1200.webp" srcset="/projet-preview/media/real/truck-cutout-800.webp 800w, /projet-preview/media/real/truck-cutout-1200.webp 1200w, /projet-preview/media/real/truck-cutout-1800.webp 1800w" sizes="(max-width: 960px) 118vw, 72vw" width="1200" height="526" alt="" fetchpriority="high">
-    </div>
-
-    <div class="container hero__content"><span class="hero-pool" aria-hidden="true"></span>
+<div class="container hero__content"><span class="hero-pool" aria-hidden="true"></span>
       <p class="label">Grain Valley · Kansas City metro · 24/7 emergency</p>
       <h1 id="hero-title">Clean the <em>whole pipe.</em><br>See the <em class="em-red">result.</em></h1>
       <p class="lede">Not just a hole through the clog. Hydro jetting up to 4,000 PSI, sewer camera inspection with locator, and drain clearing for homes, restaurants, and businesses across Kansas City.</p>
@@ -566,9 +551,10 @@
 
 <script src="/projet-preview/js/vendor/gsap.min.js" defer></script>
 <script src="/projet-preview/js/vendor/ScrollTrigger.min.js" defer></script>
-<script src="/projet-preview/js/site.js?v=20260904-scrollfix" defer></script>
+<script src="/projet-preview/js/site.js?v=20260904-readiness" defer></script>
 <script src="/projet-preview/js/luxe-pricing.js?v=20260904-1" defer></script>
 <script src="/projet-preview/js/surprises.js" defer></script>
 <script src="/projet-preview/js/customer-stories.js?v=20260904-1" defer></script>
+<script src="/projet-preview/js/analytics-events.js?v=20260904-readiness" defer></script>
 </body>
 </html>

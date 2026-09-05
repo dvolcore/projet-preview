@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.16 — 2026-09-05
+
+- Add an accessible split/side-by-side comparison viewer with presets and a camera-inspection link.
+- Clearly label the current generated illustrations; matched approved job footage remains outstanding.
+- Add manual paired-video playback support and fixture tests without presenting the fixture as job evidence.
+
 ## 0.0.0.15 — 2026-09-05
 
 - Add four distinct ambient background placements and a three-step customer service finder.

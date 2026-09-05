@@ -57,7 +57,7 @@
 <link rel="stylesheet" href="/projet-preview/css/clog-battle.css?v=20260905-1">
 <link rel="stylesheet" href="/projet-preview/css/cinema-controls.css?v=20260905-cinema">
 <script src="/projet-preview/js/cinema-controls.js?v=20260905-cinema" defer></script>
-<link rel="stylesheet" href="/projet-preview/css/ambient-scenes.css?v=20260905-guides"><link rel="stylesheet" href="/projet-preview/css/service-wizard.css?v=20260905-guides"><script defer src="/projet-preview/js/ambient-scenes.js?v=20260905-guides"></script><script defer src="/projet-preview/js/service-wizard.js?v=20260905-guides"></script></head>
+<link rel="stylesheet" href="/projet-preview/css/ambient-scenes.css?v=20260905-guides"><link rel="stylesheet" href="/projet-preview/css/service-wizard.css?v=20260905-guides"><script defer src="/projet-preview/js/ambient-scenes.js?v=20260905-guides"></script><script defer src="/projet-preview/js/service-wizard.js?v=20260905-guides"></script><link rel="stylesheet" href="/projet-preview/css/inspection-compare.css?v=20260905-compare"><script defer src="/projet-preview/js/inspection-compare.js?v=20260905-compare"></script></head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
 <div class="grain" aria-hidden="true"></div>
@@ -447,6 +447,23 @@
           <a class="btn btn--secondary" href="/projet-preview/commercial/">Commercial programs</a>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section class="inspection-compare" id="inspection-comparison" data-inspection-compare aria-labelledby="comparison-title">
+    <div class="container">
+      <p class="label">Illustrated comparison</p>
+      <h2 id="comparison-title">See why the pipe wall matters.</h2>
+      <p class="comparison-disclosure" id="comparison-disclosure"><strong>These are generated illustrations, not customer inspection footage.</strong> They show different example conditions, not before-and-after results from the same pipe.</p>
+      <div class="comparison-toolbar" aria-label="Comparison views"><button type="button" data-compare-view="100">Show buildup</button><button type="button" data-compare-view="50">Split view</button><button type="button" data-compare-view="0">Show clean wall</button><button type="button" data-compare-view="side">Side by side</button></div>
+      <div class="comparison-stage">
+        <div class="comparison-layer comparison-after"><img src="/projet-preview/media/gen/p4-pipe-after-1000.webp" width="1000" height="558" alt="Generated illustration of an open pipe with a visible wall" loading="lazy"><span class="comparison-label">Clean wall · illustration</span></div>
+        <div class="comparison-layer comparison-before"><img src="/projet-preview/media/gen/p3-pipe-before-1000.webp" width="1000" height="558" alt="Generated illustration of buildup and roots in a pipe" loading="lazy"><span class="comparison-label">Buildup · illustration</span></div>
+        <span class="comparison-divider" aria-hidden="true"></span><input class="comparison-range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparison split" aria-describedby="comparison-disclosure comparison-help">
+      </div>
+      <div class="comparison-help"><span id="comparison-help">Drag across the image, or focus the comparison and use the arrow keys. Home and End reveal either illustration.</span><output data-comparison-status>50% buildup · 50% clean wall</output></div>
+      <div class="comparison-video-controls" hidden><button type="button">Play inspection pair</button><input type="range" min="0" max="1" value="0" step="0.05" aria-label="Inspection playback position"></div>
+      <div class="comparison-cta"><span>A camera inspection helps the team assess the actual pipe condition and next step.</span><a href="/projet-preview/camera-inspection/">Explore camera inspection →</a></div>
     </div>
   </section>
 

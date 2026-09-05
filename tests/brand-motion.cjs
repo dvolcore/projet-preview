@@ -13,9 +13,17 @@ const assert=require('node:assert/strict');
    await button.click();await page.waitForFunction(()=>!document.querySelector('[data-brand-motion] video').paused);
    await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await page.waitForFunction(()=>document.querySelector('[data-brand-motion] video').paused);
    await frame.scrollIntoViewIfNeeded();await page.waitForFunction(()=>!document.querySelector('[data-brand-motion] video').paused);
+   await video.evaluate(v=>{v.playbackRate=8});
+   await page.waitForFunction(()=>document.querySelector('[data-brand-motion] video').ended);
+   assert.equal(await button.textContent(),'Replay animation');
+   const end=await video.evaluate(v=>v.currentTime);
+   await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await frame.scrollIntoViewIfNeeded();
+   await page.emulateMedia({reducedMotion:'reduce'});await page.emulateMedia({reducedMotion:'no-preference'});
+   assert.equal(await video.evaluate(v=>v.paused),true);assert.equal(await video.evaluate(v=>v.currentTime),end);
+   await button.click();await page.waitForFunction(()=>{const v=document.querySelector('[data-brand-motion] video');return !v.paused&&!v.ended&&v.currentTime<5});
    await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('[data-brand-motion] video').paused);
   }
   await page.close();
  }
- console.log('PASS: motion playback, pause/resume, offscreen suspension/resume and reduced-motion still.');
+ console.log('PASS: play once, hold at end, explicit replay, no restart on scrolling/preferences, pause/resume and reduced-motion still.');
 }finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});

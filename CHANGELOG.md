@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.13 — 2026-09-05
+
+- Play the Pro Jet arrival once, settle for two seconds, and retain the finished frame instead of looping or fading to black.
+- Offer explicit Replay after completion; scrolling, visibility changes and CRM rerenders do not restart a completed animation.
+- Preserve manual pause and reduced-motion stills.
+
 ## 0.0.0.12 — 2026-09-05
 
 - Upgrade the branded film to an animated city arrival: flight, landing, drifting smoke, traffic and moving reflections.

@@ -10,6 +10,7 @@
 })(function () {
   'use strict';
   const mounted = new WeakMap();
+  const completedSources = new Set();
   function mount(root) {
     if (!root) return function () {};
     const cleanups = [];
@@ -19,16 +20,20 @@
       const button = container.querySelector('[data-motion-toggle]');
       if (!video || !button) return;
       const preference = matchMedia('(prefers-reduced-motion: reduce)');
-      let wanted = !preference.matches, visible = false, disposed = false;
+      const source = video.dataset.motionSrc;
+      let completed = completedSources.has(source);
+      let wanted = !preference.matches && !completed, visible = false, disposed = false;
       video.muted = true;
+      video.loop = false;
+      video.removeAttribute("loop");
       const label = () => {
-        button.textContent = wanted ? 'Pause animation' : 'Play animation';
+        button.textContent = completed ? 'Replay animation' : wanted ? 'Pause animation' : 'Play animation';
         button.setAttribute('aria-pressed', String(wanted));
       };
       const sync = () => {
         if (disposed) return;
         label();
-        if (wanted && visible && !document.hidden) {
+        if (wanted && !completed && visible && !document.hidden) {
           if (!video.getAttribute('src')) video.src = video.dataset.motionSrc;
           const promise = video.play();
           if (promise) promise.catch(error => {
@@ -37,16 +42,29 @@
           });
         } else video.pause();
       };
-      const toggle = () => { wanted = !wanted; sync(); };
-      const preferenceChanged = () => { wanted = !preference.matches; sync(); };
+      const toggle = () => {
+        if (completed) {
+          completed = false; completedSources.delete(source);
+          if (video.getAttribute('src')) video.currentTime = 0;
+          wanted = true;
+        } else wanted = !wanted;
+        sync();
+      };
+      const ended = () => {
+        completed = true; wanted = false; completedSources.add(source);
+        video.pause(); label();
+      };
+      const preferenceChanged = () => { wanted = !preference.matches && !completed; sync(); };
       const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); }, {threshold:0.05});
       observer.observe(container);
       button.addEventListener('click', toggle);
+      video.addEventListener('ended', ended);
       document.addEventListener('visibilitychange', sync);
       preference.addEventListener('change', preferenceChanged);
       const cleanup = () => {
         disposed = true; observer.disconnect(); video.pause();
         button.removeEventListener('click', toggle);
+        video.removeEventListener('ended', ended);
         document.removeEventListener('visibilitychange', sync);
         preference.removeEventListener('change', preferenceChanged);
         mounted.delete(container);

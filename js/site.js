@@ -325,6 +325,7 @@
     });
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      if (button?.disabled) return;
       const fields = readFields();
       const result = validate(fields);
       ["phone", "name", "email", "zip", "message"].forEach((name) => setInvalid(name, !!result.invalid?.[name]));
@@ -347,19 +348,34 @@
         }, 600);
         return;
       }
-      const d = new FormData(form);
+      // A durable receipt is required; a bare HTTP 200 is not lead acceptance.
+      const requestId = window.crypto?.randomUUID?.();
+      if (!requestId) {
+        setStatus("is-err", "Secure submission is unavailable. Please call <a href=\"tel:+18165066243\">(816) 506-6243</a>.");
+        return;
+      }
+      const d = new URLSearchParams(new FormData(form));
+      d.set("request_id", requestId);
+      let uncertain = false;
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 15000);
       button.disabled = true;
       button.textContent = "Sending";
       try {
-        const res = await fetch(form.getAttribute("action"), { method: "POST", body: d, headers: { "Accept": "application/json" } });
-        if (!res.ok) throw new Error("bad status");
+        const res = await fetch(form.getAttribute("action"), { method: "POST", body: d, signal: controller.signal, headers: { "Accept": "application/json" } });
+        if (!res.ok) throw new Error("unconfirmed delivery");
+        const receipt = await res.json();
+        if (!quoteTools.validateReceipt?.(receipt, requestId)) throw new Error("invalid receipt");
         form.reset();
-        setStatus("is-ok", "<strong>Request sent.</strong> We will get back to you promptly with an estimate. For same-day service, text or call <a href=\"tel:+18165066243\">(816) 506-6243</a>.");
+        setStatus("is-ok", "<strong>Request received.</strong> Your inquiry has been saved. An appointment has not been confirmed. For urgent service, text or call <a href=\"tel:+18165066243\">(816) 506-6243</a>.");
       } catch (err) {
-        setStatus("is-err", "<strong>That did not send.</strong> Text or call <a href=\"tel:+18165066243\">(816) 506-6243</a> or email <a href=\"mailto:projetllckc@gmail.com?subject=Quote%20request\">projetllckc@gmail.com</a>.");
+        uncertain = true;
+        setStatus("is-err", "<strong>Delivery could not be confirmed.</strong> Your request may have been received. Please contact us to check before submitting again. Text or call <a href=\"tel:+18165066243\">(816) 506-6243</a> or email <a href=\"mailto:projetllckc@gmail.com?subject=Quote%20request\">projetllckc@gmail.com</a>.");
       } finally {
-        button.disabled = false;
-        button.textContent = liveLabel;
+        window.clearTimeout(timeout);
+        // Do not create another request after an ambiguous provider response.
+        button.disabled = uncertain;
+        button.textContent = uncertain ? "Please check delivery" : liveLabel;
         status.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "nearest" });
       }
     });

@@ -48,6 +48,16 @@
     };
   }
 
+  function validateReceipt(receipt, requestId) {
+    if (typeof requestId !== "string" || !/^[A-Za-z0-9_-]{16,128}$/.test(requestId)) return false;
+    if (!receipt || receipt.schema_version !== 1 || receipt.request_id !== requestId) return false;
+    if (!["received", "routing_pending", "routed", "owner_acknowledged"].includes(receipt.state)) return false;
+    const stamp = receipt.accepted_at;
+    if (typeof stamp !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?Z$/.test(stamp)) return false;
+    const parsed = new Date(stamp);
+    return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 19) === stamp.slice(0, 19);
+  }
+
   function buildQuoteMailto(fields) {
     const normalizedPhone = normalizePhone(fields && fields.phone);
     const bodyLines = [
@@ -80,6 +90,7 @@
     buildQuoteMailto: buildQuoteMailto,
     isPreviewEnv: isPreviewEnv,
     normalizePhone: normalizePhone,
-    validateQuote: validateQuote
+    validateQuote: validateQuote,
+    validateReceipt: validateReceipt
   };
 });

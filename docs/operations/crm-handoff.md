@@ -50,3 +50,11 @@ Record environment, date, named reviewer, request/event IDs, expected and actual
 Use sandbox and designated controlled recipients first. No real customer outreach, recording, money movement, vendor purchase or production activation is authorized merely by this handoff. Obtain specific recipients, commitments and activation scope from the owner. The readiness checker records evidence completeness, not test authenticity.
 
 Rollback: disable automation consumers and booking promises, retain durable intake when healthy, route to assigned human, preserve queues/records, restore last known good adapter/config, reconcile before replay. Never delete CRM history as website cleanup.
+
+## Received implementation handoff — 2026-09-04
+
+The owner supplied the existing local adapter handoff. EspoCRM is the existing lead store and Chatwoot the contact/conversation platform. The adapter accepts name, phone, email, service, urgency, zip, contact_pref and message; its current response contains ok, correlation_id, espo_id and chatwoot_contact_id. Reuse this implementation; a contact is not an inbox conversation, notification or booking.
+
+Fresh read-only checks confirmed the local services respond and the previously created synthetic lead/contact remain accessible. No new lead was submitted and no communication was sent. Private locations and evidence remain outside this public repository.
+
+The deployed website is static GitHub Pages; its preview form still opens an email draft. The supplied adapter is local-only, with no identified hosted production endpoint. Idempotency, partial-failure reconciliation, scoped credentials, abuse controls and owner acknowledgment remain required before public activation. The existing agent retains backend ownership.

@@ -64,3 +64,16 @@ test("mailto builder keeps optional blanks out of the draft", () => {
   assert.doesNotMatch(mailto, /Email%3A%20&/);
   assert.match(mailto, /Job%20details%3A/);
 });
+
+
+test("receipt requires durable evidence for this exact request", () => {
+  const id = "9fdbfb22-f79c-4bd1-a584-858e29c26b3f";
+  const receipt = { schema_version: 1, request_id: id, state: "routing_pending", accepted_at: "2026-09-05T01:00:00Z" };
+  assert.equal(quote.validateReceipt(receipt, id), true);
+  for (const state of ["received", "routed", "owner_acknowledged"]) {
+    assert.equal(quote.validateReceipt({ ...receipt, state }, id), true);
+  }
+  for (const invalid of [null, {ok:true}, {}, {...receipt, request_id:"other"}, {...receipt, state:"booked"}, {...receipt, accepted_at:"bad"}, {...receipt, accepted_at:"2026-02-30T01:00:00Z"}, {...receipt, schema_version:2}]) {
+    assert.equal(quote.validateReceipt(invalid, id), false);
+  }
+});

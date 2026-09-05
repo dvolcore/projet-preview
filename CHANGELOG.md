@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0.10 — 2026-09-04
+
+- Require a matching durable JSON receipt before confirming a website inquiry; retain customer fields and stop repeat submission on uncertain delivery.
+- Encode intake fields for the existing adapter contract and add receipt/browser regression checks.
+- Record the received CRM handoff and remaining hosted integration, acknowledgment and operating dependencies. Public preview remains an email-draft flow.
+
 ## 0.0.0.9 — 2026-09-04
 
 - Add isolated SEO preview/candidate generation, URL/schema/link audits, and offline operational-evidence checks.

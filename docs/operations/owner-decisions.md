@@ -2,7 +2,7 @@
 
 Answer these in the private handoff or conversation; do not paste passwords, access tokens or customer data.
 
-1. Existing CRM/field-service platform, integration agent/task name and operator responsible for approving its handoff.
+1. Existing local EspoCRM/Chatwoot handoff received. Still needed: production hosting owner, backend integration operator and field-service/dispatch backbone decision.
 2. Final domain, current host/DNS owner, who can redirect the legacy domain, intended legal/trading business name and public facts. Approve one price range: the reviewed sources conflicted between $350–600 and $450–800 for hydro jetting. Do not replace either with a guessed value.
 3. Current phone/SMS, calendar/dispatch, payment/accounting, footage storage and customer portal providers, account owners and available plan capabilities.
 4. Crew count, service zones/hours, equipment, duration/travel buffers, emergency capacity, after-hours responder and backup. Who can promise same-day service or approve exceptions?

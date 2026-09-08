@@ -10,6 +10,23 @@ test("preview detection only flips for preview hosts", () => {
   assert.equal(quote.isPreviewEnv({ protocol: "https:", hostname: "projet.midmissouri.us" }), false);
 });
 
+test("forms-backend gate routes the static host to the email-draft flow", () => {
+  for (const hostname of ["projetkc.com", "www.projetkc.com"]) {
+    assert.equal(quote.hasFormsBackend({ protocol: "https:", hostname }), false);
+  }
+  for (const loc of [
+    { protocol: "http:", hostname: "dvolcore.github.io" },
+    { protocol: "http:", hostname: "localhost" },
+    { protocol: "file:", hostname: "" },
+    null
+  ]) {
+    assert.equal(quote.hasFormsBackend(loc), false);
+  }
+  for (const hostname of ["projet.test", "example.com"]) {
+    assert.equal(quote.hasFormsBackend({ protocol: "https:", hostname }), true);
+  }
+});
+
 test("phone normalization strips punctuation and a leading country code", () => {
   assert.equal(quote.normalizePhone("(816) 506-6243"), "8165066243");
   assert.equal(quote.normalizePhone("+1 816 506 6243"), "8165066243");

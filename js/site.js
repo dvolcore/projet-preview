@@ -248,7 +248,11 @@
   const form = document.querySelector("form[data-quote]");
   if (form) {
     const quoteTools = window.ProJetQuote || {};
-    const isPreview = typeof quoteTools.isPreviewEnv === "function" && quoteTools.isPreviewEnv(window.location);
+    // Email-draft mode when no quote POST backend exists for this host;
+    // a POST without a durable-receipt response is never lead acceptance.
+    const isPreview = typeof quoteTools.hasFormsBackend === "function"
+      ? !quoteTools.hasFormsBackend(window.location)
+      : (typeof quoteTools.isPreviewEnv === "function" && quoteTools.isPreviewEnv(window.location));
     const button = form.querySelector("button[type=submit]");
     const status = form.querySelector(".form__status");
     const previewNote = form.parentElement?.querySelector("[data-quote-preview-note]");

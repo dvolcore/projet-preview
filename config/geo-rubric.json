@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "rubric_id": "geo-rubric",
+  "rubric_version": "1.0.0",
+  "created_utc": "2026-09-08",
+  "description": "Pro Jet GEO/SEO scorecard rubric. Eight mandatory weighted subscores, each 0-100. Weights are percentages of the overall 0-100 score and must sum to 100. Sources that are unavailable are reported with status 'unavailable', their observed coverage percentage and their unknown overall contribution; they are never silently scored zero and the total is never silently renormalized without a label.",
+  "scoring_rules": {
+    "subscore_range": [0, 100],
+    "coverage_range": [0, 1],
+    "overall": "sum(subscore * weight / 100) over measured subscores",
+    "missing_data": "status=unavailable; report coverage and unknown_contribution=weight; optional labeled renormalized_score over measured weight only",
+    "provisional": "scores from partial sources must set status=provisional and state the coverage percentage"
+  },
+  "subscores": [
+    {"key": "technical_seo", "weight": 20, "what": "canonicals, robots, sitemap, redirects, 404 handling, HTTPS, indexability"},
+    {"key": "local_seo", "weight": 15, "what": "NAP consistency, service-area facts, local structured signals, service-area content"},
+    {"key": "structured_data", "weight": 10, "what": "valid JSON-LD types relevant to a service-area plumber, required properties, no invented facts"},
+    {"key": "content_quality", "weight": 15, "what": "unique titles/descriptions, H1s, service depth, honest business facts"},
+    {"key": "ai_citability", "weight": 10, "what": "llms.txt accuracy, quotable fact statements, clear service/contact structure"},
+    {"key": "conversion", "weight": 10, "what": "working inquiry paths, honest status/fallback, click-to-call/text, quote flow"},
+    {"key": "accessibility_performance", "weight": 10, "what": "labels/alt/skip links, mobile viewport, motion controls, asset weight discipline"},
+    {"key": "observed_answer_visibility", "weight": 10, "what": "observed citations/answers in ChatGPT web search, Google AI Overviews, Gemini, Perplexity; requires separate live observation evidence"}
+  ]
+}

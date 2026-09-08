@@ -18,6 +18,20 @@
     return hostname.endsWith(".github.io");
   }
 
+  // Hosts serving the static site with no quote POST backend. On these, a
+  // form POST can never return the durable receipt the contract requires,
+  // so submission falls back to the honest email-draft flow. Remove a host
+  // from this list only after its backend returns validateReceipt-compatible
+  // responses (docs/operations/crm-handoff.md).
+  const STATIC_FORM_HOSTS = ["projetkc.com", "www.projetkc.com"];
+
+  function hasFormsBackend(loc) {
+    if (!loc) return false;
+    if (isPreviewEnv(loc)) return false;
+    const hostname = String(loc.hostname || "").toLowerCase();
+    return !STATIC_FORM_HOSTS.includes(hostname);
+  }
+
   function normalizePhone(value) {
     let digits = String(value || "").replace(/\D/g, "");
     if (digits.length === 11 && digits.charAt(0) === "1") digits = digits.slice(1);
@@ -88,6 +102,7 @@
     BUSINESS_PHONE_DISPLAY: BUSINESS_PHONE_DISPLAY,
     BUSINESS_PHONE_TEL: BUSINESS_PHONE_TEL,
     buildQuoteMailto: buildQuoteMailto,
+    hasFormsBackend: hasFormsBackend,
     isPreviewEnv: isPreviewEnv,
     normalizePhone: normalizePhone,
     validateQuote: validateQuote,

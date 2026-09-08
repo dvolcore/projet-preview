@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://projet.midmissouri.us/sitemap.xml
+Sitemap: https://projetkc.com/sitemap.xml

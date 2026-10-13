@@ -77,9 +77,8 @@
           </div>
         </div>
         <p class="quote-preview-note" data-quote-preview-note hidden></p>
-        <form class="form quote-form" action="https://formsubmit.co/studio405films@gmail.com" method="post">
+        <form class="form quote-form" action="https://formsubmit.co/projetllckc@gmail.com" method="post">
           <input type="hidden" name="_subject" value="New quote request from projetkc.com">
-          <input type="hidden" name="_cc" value="projetllckc@gmail.com">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_next" value="https://projetkc.com/request-quote/thank-you/">
@@ -237,5 +236,51 @@
 <script src="/js/quote-preview.js?v=20260908-geomin" defer></script>
 <script src="/js/site.js?v=20260908-geomin" defer></script>
 <script src="/js/analytics-events.js?v=20260904-readiness" defer></script>
+
+<script>
+/* Quote form delivery. Posts to FormSubmit's AJAX endpoint so the customer never
+   leaves the site, and so a delivery failure is shown rather than swallowed. */
+(function () {
+  var form = document.querySelector('form.quote-form');
+  if (!form || !window.fetch) return;            /* no JS: native POST still applies */
+  var endpoint = 'https://formsubmit.co/ajax/projetllckc@gmail.com';
+  var status = form.querySelector('.form__status') || (function () {
+    var p = document.createElement('p'); p.className = 'form__status'; form.appendChild(p); return p;
+  })();
+  var btn = form.querySelector('button[type=submit]');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity || form.reportValidity()) {
+      var data = {};
+      new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' && k !== '_honey') data[k] = v; });
+      data._subject = 'New quote request from projetkc.com';
+      data._template = 'table';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending'; }
+      status.className = 'form__status';
+      status.textContent = 'Sending your request...';
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (String(j.success) === 'true') {
+          window.location.href = '/request-quote/thank-you/';
+        } else { throw new Error(j.message || 'not delivered'); }
+      })
+      .catch(function () {
+        status.className = 'form__status is-err';
+        status.innerHTML = '<strong>We could not send that automatically.</strong> '
+          + 'Please call or text <a href="tel:+18165066243">(816) 506-6243</a>, '
+          + 'or email <a href="mailto:projetllckc@gmail.com?subject=Quote%20request">projetllckc@gmail.com</a>. '
+          + 'Sorry for the trouble.';
+        if (btn) { btn.disabled = false; btn.textContent = 'Send Request'; }
+        status.scrollIntoView({ block: 'nearest' });
+      });
+    }
+  });
+})();
+</script>
 </body>
 </html>

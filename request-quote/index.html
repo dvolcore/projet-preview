@@ -77,8 +77,13 @@
           </div>
         </div>
         <p class="quote-preview-note" data-quote-preview-note hidden></p>
-        <form class="form quote-form" action="/forms/quote.php" method="post" data-quote novalidate>
-          <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <form class="form quote-form" action="https://formsubmit.co/studio405films@gmail.com" method="post">
+          <input type="hidden" name="_subject" value="New quote request from projetkc.com">
+          <input type="hidden" name="_cc" value="projetllckc@gmail.com">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://projetkc.com/request-quote/thank-you/">
+          <input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field" data-field="phone">
             <label for="q-phone">Phone <span class="req">(required)</span></label>
             <input id="q-phone" type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="10 digits" aria-describedby="q-phone-error">
@@ -140,7 +145,7 @@
           <div class="quote-form__footer">
             <p class="form__note">We only use your details to respond to this request.</p>
             <p class="quote-form__route" data-quote-route hidden></p>
-            <button class="btn btn--lg btn--block" type="submit" data-live-label="Send Request" data-preview-label="Create email request">Send Request</button>
+            <button class="btn btn--lg btn--block" type="submit">Send Request</button>
             <div class="form__status" role="status" aria-live="polite"></div>
           </div>
         </form>

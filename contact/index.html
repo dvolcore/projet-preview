@@ -94,6 +94,92 @@
     </div>
   </section>
 
+  <section class="section" id="message">
+    <div class="container">
+      <div data-reveal>
+        <p class="label">Send a message</p>
+        <h2>Tell us what the problem is.</h2>
+        <p class="lede">Fill this in and it goes straight to Pro Jet. If the line is backing up right now, call or text <a href="tel:+18165066243">(816) 506-6243</a> instead, it is faster.</p>
+      </div>
+      <div data-reveal data-reveal-delay="100">
+        <noscript>
+          <p class="quote-preview-note quote-preview-note--static">JavaScript is off, so this form will open a confirmation page from our form provider. You can also <a href="tel:+18165066243">call</a>, <a href="sms:+18165066243">text</a>, or <a href="mailto:projetllckc@gmail.com?subject=Website%20message">email us</a>.</p>
+        </noscript>
+<form class="form quote-form" action="https://formsubmit.co/projetllckc@gmail.com" method="post">
+          <input type="hidden" name="_subject" value="Contact form message from projetkc.com">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://projetkc.com/request-quote/thank-you/">
+          <input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="field" data-field="phone">
+            <label for="q-phone">Phone <span class="req">(required)</span></label>
+            <input id="q-phone" type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="10 digits" aria-describedby="q-phone-error">
+            <span class="error" id="q-phone-error">Please enter a 10-digit phone number.</span>
+          </div>
+          <div class="form__row">
+            <div class="field" data-field="name">
+              <label for="q-name">Name <span class="req">(required)</span></label>
+              <input id="q-name" type="text" name="name" required autocomplete="name" aria-describedby="q-name-error">
+              <span class="error" id="q-name-error">Please enter your name.</span>
+            </div>
+            <div class="field" data-field="email">
+              <label for="q-email">Email <span class="opt">(optional)</span></label>
+              <input id="q-email" type="email" name="email" autocomplete="email" aria-describedby="q-email-error">
+              <span class="error" id="q-email-error">Please enter a valid email, or leave it blank.</span>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="field" data-field="zip">
+              <label for="q-zip">ZIP code <span class="opt">(optional)</span></label>
+              <input id="q-zip" type="text" name="zip" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="5 digits" aria-describedby="q-zip-error">
+              <span class="error" id="q-zip-error">Please enter a 5-digit ZIP code, or leave it blank.</span>
+            </div>
+            <div class="field" data-field="service">
+              <label for="q-service">Service requested <span class="opt">(optional)</span></label>
+              <select id="q-service" name="service">
+                <option value="">Select a service</option>
+                <option>Hydro Jetting</option>
+                <option>Sewer Camera Inspection</option>
+                <option>Drain Clearing</option>
+                <option>Grease Line Cleaning (commercial)</option>
+                <option>Preventative Maintenance</option>
+                <option>Emergency / Backup</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+          <fieldset class="field field--choice" data-field="urgency">
+            <legend>How urgent is it? <span class="opt">(optional)</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="urgency" value="Emergency, water is backing up now"><span>Emergency, water is backing up now</span></label>
+              <label class="choice"><input type="radio" name="urgency" value="Soon, within a few days"><span>Soon, within a few days</span></label>
+              <label class="choice"><input type="radio" name="urgency" value="Planning ahead"><span>Planning ahead</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field field--choice" data-field="contact_pref">
+            <legend>Best way to reach you <span class="opt">(optional)</span></legend>
+            <div class="choices choices--inline">
+              <label class="choice"><input type="radio" name="contact_pref" value="Call"><span>Call</span></label>
+              <label class="choice"><input type="radio" name="contact_pref" value="Text"><span>Text</span></label>
+              <label class="choice"><input type="radio" name="contact_pref" value="Email"><span>Email</span></label>
+            </div>
+          </fieldset>
+          <div class="field" data-field="message">
+            <label for="q-message">What is happening? <span class="req">(required)</span></label>
+            <textarea id="q-message" name="message" required aria-describedby="q-message-error"></textarea>
+            <span class="error" id="q-message-error">Please tell us a bit about the issue.</span>
+          </div>
+          <div class="quote-form__footer">
+            <p class="form__note">We only use your details to respond to this request.</p>
+            <p class="quote-form__route" data-quote-route hidden></p>
+            <button class="btn btn--lg btn--block" type="submit">Send Request</button>
+            <div class="form__status" role="status" aria-live="polite"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
@@ -149,5 +235,49 @@
 <script src="/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/js/site.js?v=20260908-geomin" defer></script>
 <script src="/js/analytics-events.js?v=20260904-readiness" defer></script>
-</body>
+<script>
+/* Quote form delivery. Posts to FormSubmit's AJAX endpoint so the customer never
+   leaves the site, and so a delivery failure is shown rather than swallowed. */
+(function () {
+  var form = document.querySelector('form.quote-form');
+  if (!form || !window.fetch) return;            /* no JS: native POST still applies */
+  var endpoint = 'https://formsubmit.co/ajax/projetllckc@gmail.com';
+  var status = form.querySelector('.form__status') || (function () {
+    var p = document.createElement('p'); p.className = 'form__status'; form.appendChild(p); return p;
+  })();
+  var btn = form.querySelector('button[type=submit]');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity || form.reportValidity()) {
+      var data = {};
+      new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' && k !== '_honey') data[k] = v; });
+      data._subject = 'Contact form message from projetkc.com';
+      data._template = 'table';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending'; }
+      status.className = 'form__status';
+      status.textContent = 'Sending your request...';
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (String(j.success) === 'true') {
+          window.location.href = '/request-quote/thank-you/';
+        } else { throw new Error(j.message || 'not delivered'); }
+      })
+      .catch(function () {
+        status.className = 'form__status is-err';
+        status.innerHTML = '<strong>We could not send that automatically.</strong> '
+          + 'Please call or text <a href="tel:+18165066243">(816) 506-6243</a>, '
+          + 'or email <a href="mailto:projetllckc@gmail.com?subject=Quote%20request">projetllckc@gmail.com</a>. '
+          + 'Sorry for the trouble.';
+        if (btn) { btn.disabled = false; btn.textContent = 'Send Request'; }
+        status.scrollIntoView({ block: 'nearest' });
+      });
+    }
+  });
+})();
+</script></body>
 </html>

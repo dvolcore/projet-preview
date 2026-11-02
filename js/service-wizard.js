@@ -17,7 +17,7 @@
     function button(text, action, cls) { const b = el('button', cls, text); b.type = 'button'; b.addEventListener('click', action); return b; }
     function cue() { if (window.ProJetCinema && typeof window.ProJetCinema.cue === 'function') window.ProJetCinema.cue('select'); }
     function urgent() {
-      const n = el('aside', 'sw-urgent');
+      const n = el('div', 'sw-urgent');
       n.append(el('strong', '', answers[0] === 'backup' ? 'Water backing up? Contact Pro Jet now.' : 'Active backup? Skip the guide and call.'), link('Call (816) 506-6243 ↗', 'tel:+18165066243'));
       return n;
     }

@@ -1,17 +1,59 @@
-# Search and user-directed AI retrieval.
+# Pro Jet - projetkc.com
+#
+# Policy (unchanged): allow every crawler that decides whether Pro Jet can be
+# CITED in an AI answer, and block only the two crawlers whose sole documented
+# job is harvesting content to TRAIN a foundation model. Per OpenAI's and
+# Anthropic's own documentation these are separate crawlers with separate jobs,
+# so blocking the training crawler costs no citation visibility.
+#
+# The Allow groups below are explicit rather than inherited from the wildcard.
+# They do not change what any crawler may fetch; they make the intent legible
+# and stop a future narrowing of the wildcard group from silently cutting off
+# an answer engine.
+
+# --- Answer / search crawlers: ALLOW.
+# --- Blocking any of these removes Pro Jet from AI answers customers see.
+
+# OpenAI: sites opted out of OAI-SearchBot are not shown in ChatGPT search answers.
 User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
+# Anthropic: Claude-SearchBot indexes for search, Claude-User retrieves on a user query.
 User-agent: Claude-SearchBot
 Allow: /
 
 User-agent: Claude-User
 Allow: /
 
-# Model-training crawlers are separate from search eligibility.
+# Perplexity: PerplexityBot is what surfaces and links a site in Perplexity results.
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Meta: Meta-WebIndexer is the token that lets Meta AI cite and link content.
+User-agent: Meta-WebIndexer
+Allow: /
+
+# Apple: powers Siri, Spotlight and Safari suggestions.
+User-agent: Applebot
+Allow: /
+
+# Google Search, including AI Overviews and AI Mode, is governed by Googlebot
+# and ordinary indexing, not by any AI-specific token.
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# --- Model-training crawlers: DISALLOW.
+# --- Documented as training-only, so this costs no search or answer visibility.
+
 User-agent: GPTBot
 Disallow: /
 

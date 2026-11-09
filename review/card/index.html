@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pro Jet Review Card | Print Sheet</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Printable one-page review card and crew script for Pro Jet.">
+<link rel="icon" href="/media/icons/favicon.ico" sizes="any">
+<!-- Deliberately self-contained: no site CSS, no webfonts, no JS. This sheet has to
+     print the same from a phone, a laptop or a library printer, and it has to work
+     when the file is opened straight off a USB stick. Asset paths are relative. -->
+<style>
+  @page { size: letter portrait; margin: 0.5in; }
+  :root { --ink: #0B0F14; --soft: #4A5663; --line: #C7D0D9; --accent: #135FB8; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; color: var(--ink); }
+  body {
+    font: 400 11pt/1.38 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { width: 7.5in; margin: 0 auto; padding: 0; }
+  h1, h2, h3 { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; letter-spacing: -0.01em; }
+
+  /* --- the half the customer looks at --- */
+  .card { border: 2pt solid var(--ink); border-radius: 10pt; padding: 0.2in 0.26in; display: grid; grid-template-columns: 1.7in 1fr; gap: 0.26in; align-items: center; }
+  .card__qr { width: 1.7in; height: 1.7in; display: block; }
+  .kicker { font: 700 9.5pt/1.2 inherit; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 6pt; }
+  .card h1 { font-size: 19.5pt; line-height: 1.06; margin: 0 0 6pt; }
+  .card p { margin: 0 0 5pt; }
+  .url { font: 600 12pt/1.25 "SF Mono", "Menlo", "Consolas", monospace; color: var(--ink); word-break: break-all; }
+  .phone { font: 700 12.5pt/1.25 inherit; }
+  .muted { color: var(--soft); font-size: 9.3pt; }
+
+  .cut { border: 0; border-top: 1.2pt dashed var(--line); margin: 0.2in 0; }
+  .cut-label { text-align: center; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); margin: -0.165in 0 0.14in; background: #fff; display: block; }
+
+  /* --- the half the crew reads --- */
+  .crew h2 { font-size: 12.5pt; margin: 0 0 6pt; }
+  .crew h3 { font-size: 10pt; margin: 11pt 0 4pt; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+  .crew p, .crew li { font-size: 9.3pt; line-height: 1.34; }
+  .crew ul { margin: 0; padding-left: 15pt; }
+  .crew li { margin-bottom: 2.6pt; }
+  .say { border-left: 3pt solid var(--accent); padding: 5pt 0 5pt 10pt; margin: 0 0 8pt; font-size: 10pt; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0.24in; }
+  .never { border: 1pt solid var(--line); border-radius: 7pt; padding: 7pt 10pt; }
+  .never h3 { margin-top: 0; color: #9A2A1F; }
+  .never li { margin-bottom: 2.6pt; }
+  .foot { margin-top: 0.16in; padding-top: 6pt; border-top: 1pt solid var(--line); font-size: 8.2pt; color: var(--soft); display: flex; justify-content: space-between; gap: 12pt; }
+
+  .noprint { max-width: 7.5in; margin: 0.4in auto 0; padding: 10pt 14pt; border: 1pt solid var(--line); border-radius: 8pt; font-size: 10.5pt; color: var(--soft); }
+  @media print { .noprint { display: none; } .sheet { padding: 0; } }
+</style>
+</head>
+<body>
+
+<main class="sheet">
+
+  <!-- ============ CUSTOMER-FACING CARD ============ -->
+  <section class="card" aria-label="Review card for the customer">
+    <img class="card__qr" src="../qr/pro-jet-review-qr.svg" width="163" height="163" alt="QR code that opens projetkc.com/review/">
+    <div>
+      <p class="kicker">Pro Jet &middot; Grain Valley, MO</p>
+      <h1>Point your camera here to leave us a review</h1>
+      <p>It takes about a minute. It helps if you mention what we did &mdash; drain cleaning, hydro jetting, the camera inspection, the sewer line repair.</p>
+      <p class="url">projetkc.com/review</p>
+      <p class="phone">(816) 506-6243 &middot; 24/7</p>
+      <p class="muted">Something not right? Call that number before you write anything &mdash; we will come back out.</p>
+    </div>
+  </section>
+
+  <hr class="cut">
+  <span class="cut-label">Crew side &mdash; keep this half in the truck</span>
+
+  <!-- ============ CREW SIDE ============ -->
+  <section class="crew" aria-label="Crew instructions">
+    <h2>Asking for the review</h2>
+
+    <h3>Say it once, at the end, while you are packing up</h3>
+    <p class="say">&ldquo;One favor if you have a minute &mdash; scan this and leave us an honest review. If you can say what we actually did today, that is the part that helps us.&rdquo;</p>
+
+    <div class="cols">
+      <div>
+        <h3>Do</h3>
+        <ul>
+          <li><strong>Hand it to every customer</strong>, every job, the same way. Not just the ones who seemed happy.</li>
+          <li>Ask <strong>once</strong>. If they say no or say nothing, let it go.</li>
+          <li>Tell them it helps to <strong>name the service</strong>: drain cleaning, hydro jetting, camera inspection, sewer line repair, line replacement.</li>
+          <li>If they would rather have it by text, send the link from your phone &mdash; <strong>projetkc.com/review</strong>.</li>
+          <li>If a customer is unhappy, <strong>fix the job</strong>. Then hand them the card like anyone else.</li>
+        </ul>
+      </div>
+      <div class="never">
+        <h3>Never</h3>
+        <ul>
+          <li><strong>Never</strong> offer a discount, cash, a free service, a gift card or anything else for a review.</li>
+          <li><strong>Never</strong> make an offer conditional on the review being positive.</li>
+          <li><strong>Never</strong> skip the ask because you think they will say something bad. Asking only happy customers is illegal.</li>
+          <li><strong>Never</strong> write, dictate or word a review for a customer, and never write one from a Pro Jet phone or account.</li>
+          <li><strong>Never</strong> ask anyone who was not actually a customer.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Why the rules are hard rules</h3>
+    <p>The FTC rule on consumer reviews and testimonials (16 CFR Part 465) makes it illegal to buy reviews, to condition an incentive on a review being positive, or to suppress honest negative reviews &mdash; including by only soliciting customers you expect to be happy. Civil penalties run per violation. Asking everyone, the same way, every time, keeps Pro Jet clear of all of it.</p>
+
+    <div class="foot">
+      <span>Pro Jet &middot; Pro-Jet LLC &middot; Grain Valley, MO &middot; (816) 506-6243 &middot; projetkc.com</span>
+      <span>projetkc.com/review</span>
+    </div>
+  </section>
+
+</main>
+
+<p class="noprint">
+  <strong>To print or save as PDF:</strong> File &rarr; Print &rarr; set paper to US Letter, margins to Default, and turn <em>on</em> &ldquo;Background graphics&rdquo; so the QR code and borders come through. Choose &ldquo;Save as PDF&rdquo; in the destination list for a PDF. This box does not print.
+</p>
+
+</body>
+</html>

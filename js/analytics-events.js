@@ -8,7 +8,7 @@
   const events = new Set(['call_click', 'text_click', 'quote_start', 'quote_email_draft_prepared', 'service_click', 'service_page_view', 'service_area_click']);
   const services = new Set(['hydro-jetting', 'camera-inspection', 'drain-clearing', 'emergency-drain-service', 'commercial']);
   const surfaces = new Set(['header', 'hero', 'footer', 'sticky_contact', 'quote_form', 'content']);
-  const routes = new Set(['/', '/hydro-jetting/', '/camera-inspection/', '/drain-clearing/', '/emergency-drain-service/', '/commercial/', '/about/', '/reviews/', '/faq/', '/request-quote/', '/contact/', '/privacy/', '/accessibility/']);
+  const routes = new Set(['/', '/hydro-jetting/', '/camera-inspection/', '/drain-clearing/', '/emergency-drain-service/', '/commercial/', '/about/', '/reviews/', '/review/', '/faq/', '/request-quote/', '/contact/', '/privacy/', '/accessibility/']);
   const bound = new WeakSet();
 
   function sanitizeEvent(name, detail) {
